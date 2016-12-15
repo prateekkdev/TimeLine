@@ -1,32 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
-    android:paddingLeft="50dp"
-    android:paddingRight="50dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/action"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:textColor="#FF0000"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+    <data>
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/action"
-        android:textColor="#00FF00" />
+        <variable
+            name="timelineitem"
+            type="com.dev.prateekk.timeline.TimelineItemModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/number"
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name"
-        android:textColor="#0000FF" />
+        android:background="?android:attr/selectableItemBackground"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/top_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@{timelineitem.topTitle}"
+            android:textColor="#17b96e"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/mid_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top_title"
+            android:layout_centerHorizontal="true"
+            android:text="@{timelineitem.midTitle}"
+            android:textColor="#4c5054"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/img_down"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/mid_title"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_chevron" />
+    </RelativeLayout>
+
+</layout>
