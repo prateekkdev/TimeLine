@@ -1,7 +1,10 @@
 package com.dev.prateekk.timeline;
 
 import android.databinding.BaseObservable;
-import android.databinding.Bindable;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.Toast;
 
 /**
  * Created by prateek.kesarwani on 15/12/16.
@@ -9,14 +12,23 @@ import android.databinding.Bindable;
 
 public class TimelineItemModel extends BaseObservable {
 
-    @Bindable
-    private String topTitle;
+    private String bookingId;
 
-    @Bindable
+    private String topTitle;
+    private Color topColor;
+
     private String midTitle;
+    private Drawable midCircle;
 
     public TimelineItemModel() {
     }
+
+    public TimelineItemModel(String topTitle, String midTitle, Color color) {
+        this.topTitle = topTitle;
+        this.midTitle = midTitle;
+        // this.topColor = color;
+    }
+
 
     public TimelineItemModel(String topTitle, String midTitle) {
         this.topTitle = topTitle;
@@ -38,5 +50,32 @@ public class TimelineItemModel extends BaseObservable {
     public void setMidTitle(String midTitle) {
         this.midTitle = midTitle;
     }
-}
 
+    public String getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(String bookingId) {
+        this.bookingId = bookingId;
+    }
+
+    public void onClickInfo(View view) {
+        Toast.makeText(view.getContext(), "View Clicked", Toast.LENGTH_SHORT).show();
+    }
+
+    public Color getTopColor() {
+        return topColor;
+    }
+
+    public void setTopColor(Color topColor) {
+        this.topColor = topColor;
+    }
+
+    public Drawable getMidCircle() {
+        return midCircle;
+    }
+
+    public void setMidCircle(Drawable midCircle) {
+        this.midCircle = midCircle;
+    }
+}
