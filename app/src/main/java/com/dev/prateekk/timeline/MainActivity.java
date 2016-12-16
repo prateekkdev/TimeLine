@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void prepareCustomerData() {
-        timeLineItemList.add(new TimelineItemModel("Pick Up", "Prateek1", Color.GREEN));
-        timeLineItemList.add(new TimelineItemModel("Pick Up", "Prateek2", Color.GREEN));
-        timeLineItemList.add(new TimelineItemModel("Drop", "Prateek1", Color.RED));
-        timeLineItemList.add(new TimelineItemModel("Drop", "Prateek1", Color.RED));
+        timeLineItemList.add(new TimelineItemModel("PICK UP", "Prateek1", Color.GREEN, true, getResources().getDrawable(R.drawable.circle_green)));
+        timeLineItemList.add(new TimelineItemModel("PICK UP", "Prateek2", Color.GREEN, false, getResources().getDrawable(R.drawable.circle_green)));
+        timeLineItemList.add(new TimelineItemModel("DROP", "Prateek1", Color.RED, false, getResources().getDrawable(R.drawable.circle_red)));
+        timeLineItemList.add(new TimelineItemModel("DROP", "Prateek1", Color.RED, false, getResources().getDrawable(R.drawable.circle_red)));
     }
 }

@@ -17,21 +17,56 @@ public class TimelineItemModel extends BaseObservable {
     private int topColor;
 
     private String midTitle;
-    private Drawable midCircle;
+    private Drawable midCircleDrawable;
+    private boolean isCurrent;
 
     public TimelineItemModel() {
     }
 
-    public TimelineItemModel(String topTitle, String midTitle, int color) {
+    public TimelineItemModel(String topTitle, String midTitle, int color, boolean isCurrent, Drawable midCircleDrawable) {
         this.topTitle = topTitle;
         this.midTitle = midTitle;
         this.topColor = color;
+        this.isCurrent = isCurrent;
+        this.midCircleDrawable = midCircleDrawable;
     }
-
 
     public TimelineItemModel(String topTitle, String midTitle) {
         this.topTitle = topTitle;
         this.midTitle = midTitle;
+    }
+
+    public Drawable getMidCircleDrawable() {
+        return midCircleDrawable;
+    }
+
+    public void setMidCircleDrawableint(Drawable midCircleDrawable) {
+        this.midCircleDrawable = midCircleDrawable;
+    }
+
+    public boolean isCurrent() {
+        return isCurrent;
+    }
+
+    public void setCurrent(boolean current) {
+        isCurrent = current;
+    }
+
+    public int getMidImgVisibility() {
+        if (!isCurrent) {
+            return View.VISIBLE;
+        } else {
+            return View.GONE;
+        }
+    }
+
+    public int getMidTextVisibility() {
+        if (isCurrent) {
+            return View.VISIBLE;
+        } else {
+            return View.GONE;
+        }
+
     }
 
     public String getTopTitle() {
@@ -68,13 +103,5 @@ public class TimelineItemModel extends BaseObservable {
 
     public void setTopColor(int topColor) {
         this.topColor = topColor;
-    }
-
-    public Drawable getMidCircle() {
-        return midCircle;
-    }
-
-    public void setMidCircle(Drawable midCircle) {
-        this.midCircle = midCircle;
     }
 }
