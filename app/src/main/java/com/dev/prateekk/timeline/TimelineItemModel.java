@@ -1,7 +1,6 @@
 package com.dev.prateekk.timeline;
 
 import android.databinding.BaseObservable;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.Toast;
@@ -15,7 +14,7 @@ public class TimelineItemModel extends BaseObservable {
     private String bookingId;
 
     private String topTitle;
-    private Color topColor;
+    private int topColor;
 
     private String midTitle;
     private Drawable midCircle;
@@ -23,10 +22,10 @@ public class TimelineItemModel extends BaseObservable {
     public TimelineItemModel() {
     }
 
-    public TimelineItemModel(String topTitle, String midTitle, Color color) {
+    public TimelineItemModel(String topTitle, String midTitle, int color) {
         this.topTitle = topTitle;
         this.midTitle = midTitle;
-        // this.topColor = color;
+        this.topColor = color;
     }
 
 
@@ -63,11 +62,11 @@ public class TimelineItemModel extends BaseObservable {
         Toast.makeText(view.getContext(), "View Clicked", Toast.LENGTH_SHORT).show();
     }
 
-    public Color getTopColor() {
+    public int getTopColor() {
         return topColor;
     }
 
-    public void setTopColor(Color topColor) {
+    public void setTopColor(int topColor) {
         this.topColor = topColor;
     }
 
