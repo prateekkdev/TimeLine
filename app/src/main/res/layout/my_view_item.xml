@@ -9,9 +9,9 @@
     </data>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="80dp"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="@android:color/transparent"
         android:paddingBottom="8dp"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
@@ -19,10 +19,11 @@
 
         <TextView
             android:id="@+id/top_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:text="@{timelineitem.topTitle}"
             android:textColor="@{timelineitem.topColor}"
             android:textSize="12sp"
@@ -30,7 +31,7 @@
 
         <TextView
             android:id="@+id/mid_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/top_title"
             android:layout_centerHorizontal="true"
