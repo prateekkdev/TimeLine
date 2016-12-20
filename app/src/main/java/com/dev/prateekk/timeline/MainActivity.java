@@ -90,9 +90,10 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TimelineItemModel item = timeLineItemList.remove(0);
-                // item.setMidTitle("Changed");
-                mAdapter.notifyDataSetChanged();
+                if (timeLineItemList.size() > 0) {
+                    TimelineItemModel item = timeLineItemList.remove(0);
+                    mAdapter.notifyDataSetChanged();
+                }
             }
         });
 
