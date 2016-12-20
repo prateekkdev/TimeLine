@@ -3,6 +3,6 @@
 
     <FrameLayout
         android:layout_width="@dimen/item_width"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent" />
 
 </layout>

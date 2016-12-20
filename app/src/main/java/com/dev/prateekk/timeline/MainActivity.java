@@ -1,13 +1,10 @@
 package com.dev.prateekk.timeline;
 
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
@@ -21,12 +18,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TimelineAdapter mAdapter;
 
-    private float itemWidth;
-    private float padding;
-    private float firstItemWidth;
-    private float allPixels;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,44 +27,14 @@ public class MainActivity extends AppCompatActivity {
 
         mAdapter = new TimelineAdapter(timeLineItemList);
 
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        itemWidth = getResources().getDimension(R.dimen.item_width);
-        padding = (size.x - itemWidth) / 2;
-        firstItemWidth = getResources().getDimension(R.dimen.item_width);
-
-        allPixels = 0;
-
-
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                synchronized (this) {
-                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                        calculatePositionAndScroll(recyclerView);
-                    }
-                }
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                allPixels += dx;
-            }
-        });
-
         recyclerView.setAdapter(mAdapter);
 
         initTemp();
 
         prepareBookingData();
-
 
 //        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 //
@@ -111,14 +72,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        final RecyclerView items = (RecyclerView) findViewById(R.id.recycler_view);
+        final TimelineRecyclerView items = (TimelineRecyclerView) findViewById(R.id.recycler_view);
 
         ViewTreeObserver vto = items.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 items.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                calculatePositionAndScroll(items);
+                items.calculatePositionAndScroll(items);
             }
         });
     }
@@ -158,29 +119,5 @@ public class MainActivity extends AppCompatActivity {
         timeLineItemList.add(new TimelineItemModel(bookingData2));
         timeLineItemList.add(new TimelineItemModel(bookingData3));
 
-    }
-
-    private void calculatePositionAndScroll(RecyclerView recyclerView) {
-        int expectedPosition = Math.round((allPixels + padding - firstItemWidth) / itemWidth);
-        // Special cases for the padding items
-        if (expectedPosition == -1) {
-            expectedPosition = 0;
-        } else if (expectedPosition >= recyclerView.getAdapter().getItemCount() - 2) {
-            expectedPosition--;
-        }
-        scrollListToPosition(recyclerView, expectedPosition);
-    }
-
-    private void scrollListToPosition(RecyclerView recyclerView, int expectedPosition) {
-        float targetScrollPos = expectedPosition * itemWidth + firstItemWidth - padding;
-        float missingPx = targetScrollPos - allPixels;
-        if (missingPx != 0) {
-            recyclerView.smoothScrollBy((int) missingPx, 0);
-        }
-    }
-
-    public int dpToPx(int dp) {
-        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
-        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 }

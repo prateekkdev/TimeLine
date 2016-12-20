@@ -10,7 +10,6 @@
             type="com.dev.prateekk.timeline.TimelineItemModel" />
     </data>
 
-    <!--         android:layout_width="@{timelineitem.width, default=@dimen/relative_width}" -->
     <RelativeLayout
         android:layout_width="@dimen/item_width"
         android:layout_height="80dp"
