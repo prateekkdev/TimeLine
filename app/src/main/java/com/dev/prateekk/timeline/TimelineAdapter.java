@@ -1,11 +1,13 @@
 package com.dev.prateekk.timeline;
 
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -20,6 +22,19 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
     public TimelineAdapter(List<TimelineItemModel> timelineItemModelList) {
         this.timelineItemModelList = timelineItemModelList;
     }
+
+    @BindingAdapter("android:layout_width")
+    public static void setRelativeLayoutWidth(View view, int width) {
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        layoutParams.width = width;
+        view.setLayoutParams(layoutParams);
+    }
+
+    @BindingAdapter("pname")
+    public static void setThis(TextView textView, String pname) {
+        textView.setText(pname);
+    }
+
 
     @Override
     public BindingHolder onCreateViewHolder(ViewGroup parent, int type) {

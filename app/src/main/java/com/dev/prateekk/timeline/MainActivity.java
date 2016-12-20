@@ -1,6 +1,5 @@
 package com.dev.prateekk.timeline;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         initTemp();
 
-        prepareCustomerData();
+        prepareBookingData();
 
 
     }
@@ -84,11 +83,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void prepareCustomerData() {
-        timeLineItemList.add(new TimelineItemModel("PICK UP", "Prateek1", Color.GREEN, true, getResources().getDrawable(R.drawable.circle_green)));
-        timeLineItemList.add(new TimelineItemModel("PICK UP", "Prateek2", Color.GREEN, false, getResources().getDrawable(R.drawable.circle_green)));
-        timeLineItemList.add(new TimelineItemModel("DROP", "Prateek1", Color.RED, false, getResources().getDrawable(R.drawable.circle_red)));
-        timeLineItemList.add(new TimelineItemModel("DROP", "Prateek1", Color.RED, false, getResources().getDrawable(R.drawable.circle_red)));
+    private void prepareBookingData() {
+
+        SDBookingData bookingData1 = new SDBookingData();
+        bookingData1.setBookingCurrent(true);
+        bookingData1.mBookingResponse.setStatus("accepted");
+        bookingData1.mBookingResponse.customer_info.name = "Prateek1";
+
+        SDBookingData bookingData2 = new SDBookingData();
+        bookingData2.setBookingCurrent(false);
+        bookingData2.mBookingResponse.setStatus("payment");
+        bookingData2.mBookingResponse.customer_info.name = "Prateek2";
+
+        SDBookingData bookingData3 = new SDBookingData();
+        bookingData3.setBookingCurrent(false);
+        bookingData3.mBookingResponse.setStatus("invoice");
+        bookingData3.mBookingResponse.customer_info.name = "Prateek3";
+
+        timeLineItemList.add(new TimelineItemModel(bookingData1));
+        timeLineItemList.add(new TimelineItemModel(bookingData2));
+        timeLineItemList.add(new TimelineItemModel(bookingData3));
+
     }
 
     public int dpToPx(int dp) {

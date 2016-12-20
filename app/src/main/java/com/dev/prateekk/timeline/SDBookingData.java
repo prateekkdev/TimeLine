@@ -8,9 +8,9 @@ import java.util.Arrays;
 
 public class SDBookingData implements Serializable, Cloneable {
 
-    private static final int DEFAULT_PASSENGER_COUNT = -1;
+    public static final int DEFAULT_PASSENGER_COUNT = -1;
 
-    private static final int DEFAULT_BOOKING_CANCEL_COUNTDOWN_TIMER = 4 * 60; // in seconds
+    public static final int DEFAULT_BOOKING_CANCEL_COUNTDOWN_TIMER = 4 * 60; // in seconds
     public static String CANCELLATION_SOURCE_DRIVER = "driver";
     public static String CANCELLATION_SOURCE_CUSTOMER = "customer";
     public long driverPickupWaitTime = -1;
@@ -18,27 +18,31 @@ public class SDBookingData implements Serializable, Cloneable {
     public ListViewButtonState paymentState = ListViewButtonState.UNCHECKED;
     public long tempHardCancelTimeStamp = 0;
     public CurrentTimer currentTimerRunning = CurrentTimer.NONE;// by default none of the timers are running...
-    private String sent_at;
-    private String reached_at;
-    private String boarded_at;
-    private String completed_at;
-    private String submit_invoice_at;
-    private boolean isOtpValidated;
-    private BookingSource mBookingSource;
-    private BookingResponse mBookingResponse;
-    private int retry_attempts;
-    private String cancellation_source;
-    private String cancellation_reason;
-    private int fraud_check_count = 0;
-    private boolean isClientLocateAutoNavigate = true;
-    private boolean isStopTripAutoNavigate = true;
-    private boolean isCustomerArrived = true;
-    private String decryptedOTP;
+    public String sent_at;
+    public String reached_at;
+    public String boarded_at;
+    public String completed_at;
+    public String submit_invoice_at;
+    public boolean isOtpValidated;
+    public BookingSource mBookingSource;
+    public BookingResponse mBookingResponse;
+    public int retry_attempts;
+    public String cancellation_source;
+    public String cancellation_reason;
+    public int fraud_check_count = 0;
+    public boolean isClientLocateAutoNavigate = true;
+    public boolean isStopTripAutoNavigate = true;
+    public boolean isCustomerArrived = true;
+    public String decryptedOTP;
 
-    private boolean isBookingCurrent;
-    private int customerSeatCount = DEFAULT_PASSENGER_COUNT;
+    public boolean isBookingCurrent;
+    public int customerSeatCount = DEFAULT_PASSENGER_COUNT;
 
-    private SDBookingData(BookingResponse bookingResponse) {
+    public SDBookingData() {
+        mBookingResponse = new BookingResponse();
+    }
+
+    public SDBookingData(BookingResponse bookingResponse) {
         this.mBookingResponse = bookingResponse;
     }
 
@@ -296,7 +300,7 @@ public class SDBookingData implements Serializable, Cloneable {
         TRIP_HOTSPOT_V2_3_BOOKINGS(3);
 
 
-        private int mBookingFeature;
+        public int mBookingFeature;
 
         BookingFeature(int bookingFeature) {
             this.mBookingFeature = bookingFeature;
@@ -314,31 +318,31 @@ public class SDBookingData implements Serializable, Cloneable {
 
     public static class BookingResponse implements Serializable, Cloneable {
         public BookingInvoice invoice;
-        private double distance;
-        private String pickup_time;
-        private String krn;
-        private String share_id;
-        private String status;
-        private int seats_selected = 1;
+        public double distance;
+        public String pickup_time;
+        public String krn;
+        public String share_id;
+        public String status;
+        public int seats_selected = 1;
 
         // This is deprecated now, not utilised
-        private boolean show_seat_list;
+        public boolean show_seat_list;
 
-        private boolean is_hotspot;
-        private long booking_rules;
-        private CustomerInfo customer_info;
-        private LoctionInfo pick_up_info;
-        private LoctionInfo drop_info;
-        private String hotspot_address_title;
-        private long buffer_wait_time;
-        private int latest_invoice_retries;
-        private String enc_otp;
-        private int booking_cancel_countdown_time = -1;
+        public boolean is_hotspot;
+        public long booking_rules;
+        public CustomerInfo customer_info;
+        public LoctionInfo pick_up_info;
+        public LoctionInfo drop_info;
+        public String hotspot_address_title;
+        public long buffer_wait_time;
+        public int latest_invoice_retries;
+        public String enc_otp;
+        public int booking_cancel_countdown_time = -1;
 
-        private TripInfo trip_info;
+        public TripInfo trip_info;
 
         public BookingResponse() {
-
+            customer_info = new CustomerInfo();
         }
 
         public static boolean checkFeature(long rule, BookingFeature feature) {
@@ -357,14 +361,14 @@ public class SDBookingData implements Serializable, Cloneable {
             return null;
         }
 
-        private int getBooking_cancel_countdown_time() {
+        public int getBooking_cancel_countdown_time() {
             if (booking_cancel_countdown_time == -1) {
                 booking_cancel_countdown_time = DEFAULT_BOOKING_CANCEL_COUNTDOWN_TIMER; // in seconds
             }
             return booking_cancel_countdown_time;
         }
 
-        private void setBooking_cancel_countdown_time(int booking_cancel_countdown_time) {
+        public void setBooking_cancel_countdown_time(int booking_cancel_countdown_time) {
             this.booking_cancel_countdown_time = booking_cancel_countdown_time;
         }
 
@@ -376,7 +380,7 @@ public class SDBookingData implements Serializable, Cloneable {
             this.trip_info.setBookingCount(TripInfo.DEFAULT_BOOKING_COUNT);
         }
 
-        private String getEnc_otp() {
+        public String getEnc_otp() {
             return enc_otp;
         }
 
@@ -578,8 +582,8 @@ public class SDBookingData implements Serializable, Cloneable {
 
         public static class TripInfo {
             public static final int DEFAULT_BOOKING_COUNT = 2;
-            private long trip_rules;
-            private HotSpotV2 hotspot_v2;
+            public long trip_rules;
+            public HotSpotV2 hotspot_v2;
 
             public TripInfo() {
                 hotspot_v2 = new HotSpotV2();

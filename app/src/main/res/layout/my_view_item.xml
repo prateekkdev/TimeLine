@@ -3,11 +3,14 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="timelineitem"
             type="com.dev.prateekk.timeline.TimelineItemModel" />
     </data>
 
+    <!--         android:layout_width="@{timelineitem.width, default=@dimen/relative_width}" -->
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="80dp"
@@ -42,14 +45,14 @@
             android:text="@{timelineitem.midTitle}"
             android:textColor="#4c5054"
             android:textSize="18sp"
-            android:visibility="@{timelineitem.midTextVisibility}" />
+            android:visibility="@{timelineitem.bookingData.bookingCurrent ? View.VISIBLE : View.GONE}" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@{timelineitem.midCircleDrawable}"
-            android:visibility="@{timelineitem.midImgVisibility}" />
+            android:src='@{timelineitem.bookingData.status.equalsIgnoreCase("payment") ? @drawable/circle_red : @drawable/circle_green}'
+            android:visibility="@{!timelineitem.bookingData.bookingCurrent ? View.VISIBLE : View.GONE}" />
 
         <ImageView
             android:id="@+id/img_down"
