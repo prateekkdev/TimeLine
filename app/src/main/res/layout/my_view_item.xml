@@ -12,7 +12,7 @@
 
     <!--         android:layout_width="@{timelineitem.width, default=@dimen/relative_width}" -->
     <RelativeLayout
-        android:layout_width="300dp"
+        android:layout_width="@dimen/item_width"
         android:layout_height="80dp"
         android:background="@android:color/transparent"
         android:paddingBottom="8dp"

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -38,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        itemWidth = dpToPx(300);
+        itemWidth = getResources().getDimension(R.dimen.item_width);
         padding = (size.x - itemWidth) / 2;
-        firstItemWidth = dpToPx(300);
+        firstItemWidth = getResources().getDimension(R.dimen.item_width);
 
         allPixels = 0;
 
@@ -107,6 +108,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final RecyclerView items = (RecyclerView) findViewById(R.id.recycler_view);
+
+        ViewTreeObserver vto = items.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                items.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                calculatePositionAndScroll(items);
+            }
+        });
+    }
+
+
     private void initTemp() {
         Button button = (Button) this.findViewById(R.id.button_temp);
         button.setOnClickListener(new View.OnClickListener() {
@@ -127,19 +144,19 @@ public class MainActivity extends AppCompatActivity {
         bookingData1.mBookingResponse.setStatus("accepted");
         bookingData1.mBookingResponse.customer_info.name = "Prateek1";
 
-//        SDBookingData bookingData2 = new SDBookingData();
-//        bookingData2.setBookingCurrent(false);
-//        bookingData2.mBookingResponse.setStatus("payment");
-//        bookingData2.mBookingResponse.customer_info.name = "Prateek2";
-//
-//        SDBookingData bookingData3 = new SDBookingData();
-//        bookingData3.setBookingCurrent(false);
-//        bookingData3.mBookingResponse.setStatus("invoice");
-//        bookingData3.mBookingResponse.customer_info.name = "Prateek3";
-//
+        SDBookingData bookingData2 = new SDBookingData();
+        bookingData2.setBookingCurrent(false);
+        bookingData2.mBookingResponse.setStatus("payment");
+        bookingData2.mBookingResponse.customer_info.name = "Prateek2";
+
+        SDBookingData bookingData3 = new SDBookingData();
+        bookingData3.setBookingCurrent(false);
+        bookingData3.mBookingResponse.setStatus("invoice");
+        bookingData3.mBookingResponse.customer_info.name = "Prateek3";
+
         timeLineItemList.add(new TimelineItemModel(bookingData1));
-//        timeLineItemList.add(new TimelineItemModel(bookingData2));
-//        timeLineItemList.add(new TimelineItemModel(bookingData3));
+        timeLineItemList.add(new TimelineItemModel(bookingData2));
+        timeLineItemList.add(new TimelineItemModel(bookingData3));
 
     }
 
