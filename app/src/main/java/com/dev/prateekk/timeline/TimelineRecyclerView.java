@@ -17,7 +17,7 @@ public class TimelineRecyclerView extends RecyclerView {
     private float itemWidth;
     private float padding;
     private float firstItemWidth;
-    private float pixelMovement;
+    private float totalPixelMovement;
 
     public TimelineRecyclerView(Context context) {
         super(context);
@@ -49,7 +49,7 @@ public class TimelineRecyclerView extends RecyclerView {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                pixelMovement += dx;
+                totalPixelMovement += dx;
             }
         });
 
@@ -63,11 +63,11 @@ public class TimelineRecyclerView extends RecyclerView {
         padding = (size.x - itemWidth) / 2;
         firstItemWidth = getResources().getDimension(R.dimen.item_width);
 
-        pixelMovement = 0;
+        totalPixelMovement = 0;
     }
 
     public void calculatePositionAndScroll(RecyclerView recyclerView) {
-        int expectedPosition = Math.round((pixelMovement + padding - firstItemWidth) / itemWidth);
+        int expectedPosition = Math.round((totalPixelMovement + padding - firstItemWidth) / itemWidth);
         // Special cases for the padding items
         if (expectedPosition == -1) {
             expectedPosition = 0;
@@ -79,9 +79,9 @@ public class TimelineRecyclerView extends RecyclerView {
 
     private void scrollListToPosition(RecyclerView recyclerView, int expectedPosition) {
         float targetScrollPos = expectedPosition * itemWidth + firstItemWidth - padding;
-        float missingPx = targetScrollPos - pixelMovement;
-        if (missingPx != 0) {
-            recyclerView.smoothScrollBy((int) missingPx, 0);
+        float pixelToMoveBack = targetScrollPos - totalPixelMovement;
+        if (pixelToMoveBack != 0) {
+            recyclerView.smoothScrollBy((int) pixelToMoveBack, 0);
         }
     }
 }
