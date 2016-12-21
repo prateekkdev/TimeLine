@@ -76,7 +76,15 @@ public class TimelineRecyclerView extends RecyclerView {
         scrollListToPosition(recyclerView, expectedPosition);
     }
 
-    private void scrollListToPosition(RecyclerView recyclerView, int expectedPosition) {
+
+    /**
+     * Here 0 is the first element(So, 0 is First Item added(not the dummy one))
+     * n - 1 is the last element(No More Bookings)
+     *
+     * @param recyclerView
+     * @param expectedPosition
+     */
+    public void scrollListToPosition(RecyclerView recyclerView, int expectedPosition) {
 
         float targetScrollPos = expectedPosition * itemWidth + extraItemWidth - padding;
 

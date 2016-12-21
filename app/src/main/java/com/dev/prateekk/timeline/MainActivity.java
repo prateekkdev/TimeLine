@@ -1,10 +1,10 @@
 package com.dev.prateekk.timeline;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
@@ -15,7 +15,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<TimelineItemModel> timeLineItemList = new ArrayList<>();
-    private RecyclerView recyclerView;
+    private TimelineRecyclerView recyclerView;
     private TimelineAdapter mAdapter;
 
     @Override
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = (TimelineRecyclerView) findViewById(R.id.recycler_view);
 
         mAdapter = new TimelineAdapter(timeLineItemList);
 
@@ -72,14 +72,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        final TimelineRecyclerView items = (TimelineRecyclerView) findViewById(R.id.recycler_view);
+        // final TimelineRecyclerView items = (TimelineRecyclerView) findViewById(R.id.recycler_view);
 
-        ViewTreeObserver vto = items.getViewTreeObserver();
+        ViewTreeObserver vto = recyclerView.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                items.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                items.calculatePositionAndScroll(items);
+                recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                recyclerView.calculatePositionAndScroll(recyclerView);
+
+                // Temp check
+                doTransition();
             }
         });
     }
@@ -96,6 +99,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    private void doTransition() {
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                recyclerView.scrollListToPosition(recyclerView, 4);
+            }
+        }, 1000);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                recyclerView.scrollListToPosition(recyclerView, 0);
+            }
+        }, 2000);
+
 
     }
 
