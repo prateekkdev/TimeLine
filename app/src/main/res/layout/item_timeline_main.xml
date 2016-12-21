@@ -12,7 +12,7 @@
 
     <RelativeLayout
         android:layout_width="@dimen/item_width"
-        android:layout_height="80dp"
+        android:layout_height="@dimen/timeline_height"
         android:background="@android:color/transparent"
         android:paddingBottom="8dp"
         android:paddingLeft="50dp"
