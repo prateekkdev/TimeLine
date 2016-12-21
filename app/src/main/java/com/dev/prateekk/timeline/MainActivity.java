@@ -109,16 +109,22 @@ public class MainActivity extends AppCompatActivity {
         SDBookingData bookingData2 = new SDBookingData();
         bookingData2.setBookingCurrent(false);
         bookingData2.mBookingResponse.setStatus("payment");
-        bookingData2.mBookingResponse.customer_info.name = "Prateek2";
+        bookingData2.mBookingResponse.customer_info.name = "Prateek1";
 
         SDBookingData bookingData3 = new SDBookingData();
         bookingData3.setBookingCurrent(false);
-        bookingData3.mBookingResponse.setStatus("invoice");
-        bookingData3.mBookingResponse.customer_info.name = "Prateek3";
+        bookingData3.mBookingResponse.setStatus("accepted");
+        bookingData3.mBookingResponse.customer_info.name = "Prateek2";
+
+        SDBookingData bookingData4 = new SDBookingData();
+        bookingData4.setBookingCurrent(false);
+        bookingData4.mBookingResponse.setStatus("payment");
+        bookingData4.mBookingResponse.customer_info.name = "Prateek2";
 
         timeLineItemList.add(new TimelineItemModel(bookingData1));
         timeLineItemList.add(new TimelineItemModel(bookingData2));
         timeLineItemList.add(new TimelineItemModel(bookingData3));
+        timeLineItemList.add(new TimelineItemModel(bookingData4));
 
     }
 }
