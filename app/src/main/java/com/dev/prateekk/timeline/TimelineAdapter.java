@@ -17,8 +17,10 @@ import java.util.List;
 
 public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.BindingHolder> {
 
-    private static final int VIEW_TYPE_PADDING = 1;
-    private static final int VIEW_TYPE_ITEM = 2;
+    private static final int VIEW_TYPE_FIRST = 1;
+    private static final int VIEW_TYPE_MAIN = 2;
+    private static final int VIEW_TYPE_LAST = 3;
+    private static final int VIEW_TYPE_LAST_PADDING = 4;
 
     private List<TimelineItemModel> timelineItemModelList;
 
@@ -41,10 +43,14 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0 || position == getItemCount() - 1) {
-            return VIEW_TYPE_PADDING;
+        if (position == 0) {
+            return VIEW_TYPE_FIRST;
+        } else if (position == getItemCount() - 2) {
+            return VIEW_TYPE_LAST;
+        } else if (position == getItemCount() - 1) {
+            return VIEW_TYPE_LAST_PADDING;
         }
-        return VIEW_TYPE_ITEM;
+        return VIEW_TYPE_MAIN;
     }
 
 
@@ -52,11 +58,16 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
     public TimelineAdapter.BindingHolder onCreateViewHolder(ViewGroup parent, int type) {
 
         View v;
-        if (type == VIEW_TYPE_ITEM) {
-            v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.my_view_item, parent, false);
+
+        if (type == VIEW_TYPE_FIRST) {
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_timeline_first, parent, false);
+        } else if (type == VIEW_TYPE_LAST) {
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_timeline_last, parent, false);
+        } else if (type == VIEW_TYPE_LAST_PADDING) {
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_timeline_last_padding, parent, false);
         } else {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_padding, parent, false);
+            v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.item_timeline_main, parent, false);
         }
 
         BindingHolder holder = new BindingHolder(v);
@@ -67,7 +78,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
     @Override
     public void onBindViewHolder(BindingHolder holder, int position) {
 
-        if (getItemViewType(position) == VIEW_TYPE_ITEM) {
+        if (getItemViewType(position) == VIEW_TYPE_MAIN) {
 
             // As 0th position is for padding
             position = position - 1;
@@ -80,7 +91,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
 
     @Override
     public int getItemCount() {
-        return timelineItemModelList.size() + 2;
+        return timelineItemModelList.size() + 3;
     }
 
     public class BindingHolder extends RecyclerView.ViewHolder {
