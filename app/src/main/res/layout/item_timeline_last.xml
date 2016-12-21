@@ -26,6 +26,7 @@
             android:layout_toLeftOf="@id/txt_no_more_bookings"
             android:src="@drawable/circle_grey" />
 
+        <!-- This is added to avoid future removal of above no more bookings and still line should display or not -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
