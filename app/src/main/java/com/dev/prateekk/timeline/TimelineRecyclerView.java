@@ -67,7 +67,7 @@ public class TimelineRecyclerView extends RecyclerView {
     }
 
     public void calculatePositionAndScroll(RecyclerView recyclerView) {
-        int expectedPosition = (int) Math.ceil((totalPixelMovement + padding - extraItemWidth) / itemWidth);
+        int expectedPosition = Math.round((totalPixelMovement + padding - extraItemWidth) / itemWidth);
         // Special cases for the padding items
         if (expectedPosition == -1) {
             expectedPosition = 0;
