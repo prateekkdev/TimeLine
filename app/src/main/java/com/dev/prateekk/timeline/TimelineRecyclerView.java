@@ -79,7 +79,8 @@ public class TimelineRecyclerView extends RecyclerView {
 
     /**
      * Here 0 is the first element(So, 0 is First Item added(not the dummy one))
-     * n - 1 is the last element(No More Bookings)
+     * Size of recyclerView is the last element
+     * Suppose size=4, ie 0, 1, 2, 3, 4. Here 4 is 'No more Bookings'
      *
      * @param recyclerView
      * @param expectedPosition

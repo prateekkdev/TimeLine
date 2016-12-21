@@ -81,12 +81,11 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 recyclerView.calculatePositionAndScroll(recyclerView);
 
-                // Temp check
-                doTransition();
+                // Initial Transition
+                doInitialTransitionOfFullLength();
             }
         });
     }
-
 
     private void initTemp() {
         Button button = (Button) this.findViewById(R.id.button_temp);
@@ -102,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void doTransition() {
+    private void doInitialTransitionOfFullLength() {
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -118,8 +117,6 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.scrollListToPosition(recyclerView, 0);
             }
         }, 2000);
-
-
     }
 
     private void prepareBookingData() {
