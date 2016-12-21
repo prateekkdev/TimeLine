@@ -81,13 +81,14 @@ public class TimelineRecyclerView extends RecyclerView {
 
         float targetScrollPos = expectedPosition * itemWidth + extraItemWidth - padding;
 
-        if(expectedPosition == recyclerView.getAdapter().getItemCount() - 2) {
-            targetScrollPos = expectedPosition * itemWidth + getResources().getDimension(R.dimen.extra_item_width) - padding;
+        if (expectedPosition == recyclerView.getAdapter().getItemCount() - 3) {
+
+        } else {
+            float pixelToMoveBack = targetScrollPos - totalPixelMovement;
+            if (pixelToMoveBack != 0) {
+                recyclerView.smoothScrollBy((int) pixelToMoveBack, 0);
+            }
         }
 
-        float pixelToMoveBack = targetScrollPos - totalPixelMovement;
-        if (pixelToMoveBack != 0) {
-            recyclerView.smoothScrollBy((int) pixelToMoveBack, 0);
-        }
     }
 }

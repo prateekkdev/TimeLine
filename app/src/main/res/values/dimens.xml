@@ -4,5 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="item_width">300dp</dimen>
+    <dimen name="last_item_width">200dp</dimen>
     <dimen name="extra_item_width">50dp</dimen>
 </resources>

@@ -45,11 +45,12 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
     public int getItemViewType(int position) {
         if (position == 0) {
             return VIEW_TYPE_FIRST;
-        } else if (position == getItemCount() - 2) {
-            return VIEW_TYPE_LAST;
         } else if (position == getItemCount() - 1) {
-            return VIEW_TYPE_LAST_PADDING;
+            return VIEW_TYPE_LAST;
         }
+//        else if (position == getItemCount() - 1) {
+//            return VIEW_TYPE_LAST_PADDING;
+//        }
         return VIEW_TYPE_MAIN;
     }
 
@@ -91,7 +92,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
 
     @Override
     public int getItemCount() {
-        return timelineItemModelList.size() + 3;
+        return timelineItemModelList.size() + 2;
     }
 
     public class BindingHolder extends RecyclerView.ViewHolder {
