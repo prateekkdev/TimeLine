@@ -20,7 +20,6 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
     private static final int VIEW_TYPE_FIRST = 1;
     private static final int VIEW_TYPE_MAIN = 2;
     private static final int VIEW_TYPE_LAST = 3;
-    private static final int VIEW_TYPE_LAST_PADDING = 4;
 
     private List<TimelineItemModel> timelineItemModelList;
 
@@ -48,9 +47,6 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
         } else if (position == getItemCount() - 1) {
             return VIEW_TYPE_LAST;
         }
-//        else if (position == getItemCount() - 1) {
-//            return VIEW_TYPE_LAST_PADDING;
-//        }
         return VIEW_TYPE_MAIN;
     }
 
@@ -64,8 +60,6 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_timeline_first, parent, false);
         } else if (type == VIEW_TYPE_LAST) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_timeline_last, parent, false);
-        } else if (type == VIEW_TYPE_LAST_PADDING) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_timeline_last_padding, parent, false);
         } else {
             v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_timeline_main, parent, false);

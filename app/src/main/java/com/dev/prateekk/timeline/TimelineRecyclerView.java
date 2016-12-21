@@ -73,9 +73,6 @@ public class TimelineRecyclerView extends RecyclerView {
             expectedPosition = 0;
         }
 
-//        else if (expectedPosition >= recyclerView.getAdapter().getItemCount() - 2) {
-//            expectedPosition--;
-//        }
         scrollListToPosition(recyclerView, expectedPosition);
     }
 
@@ -83,14 +80,9 @@ public class TimelineRecyclerView extends RecyclerView {
 
         float targetScrollPos = expectedPosition * itemWidth + extraItemWidth - padding;
 
-        if (expectedPosition == recyclerView.getAdapter().getItemCount() - 2) {
-
-        } else {
-            float pixelToMoveBack = targetScrollPos - totalPixelMovement;
-            if (pixelToMoveBack != 0) {
-                recyclerView.smoothScrollBy((int) pixelToMoveBack, 0);
-            }
+        float pixelToMoveBack = targetScrollPos - totalPixelMovement;
+        if (pixelToMoveBack != 0) {
+            recyclerView.smoothScrollBy((int) pixelToMoveBack, 0);
         }
-
     }
 }
