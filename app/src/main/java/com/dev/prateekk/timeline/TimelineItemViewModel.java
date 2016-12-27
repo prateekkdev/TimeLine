@@ -1,7 +1,6 @@
 package com.dev.prateekk.timeline;
 
 import android.databinding.BaseObservable;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,45 +17,15 @@ public class TimelineItemViewModel extends BaseObservable {
 
     private int width;
 
-    private SDBookingData bookingData;
+    private String id;
+
+    private boolean isCurrent;
+
+    private boolean isPayment;
+
+    private int midImg;
 
     public TimelineItemViewModel() {
-    }
-
-    public TimelineItemViewModel(SDBookingData bookingData) {
-        this.bookingData = bookingData;
-
-        // This name, get from utility which validates and returns proper name to display.
-        String name = bookingData.getBookingResponse().getCustomer_info().name;
-
-        this.topTitle = bookingData.isBookingCurrent() ? bookingData.getStatus().equalsIgnoreCase("accepted") ? "PICKUP"
-                : bookingData.getStatus().equalsIgnoreCase("driver_reached") ? "WAIT FOR"
-                : bookingData.getStatus().equalsIgnoreCase("invoice") ? "BILLING FOR"
-                : bookingData.getStatus().equalsIgnoreCase("payment") ? "DROP"
-                : ""
-                : name;
-
-
-        this.midTitle = name;
-
-        this.topColor = bookingData.isBookingCurrent ? bookingData.getStatus().equalsIgnoreCase("accepted") ? TimelineApp.getApp().getResources().getColor(R.color.green)
-                : bookingData.getStatus().equalsIgnoreCase("payment") ? TimelineApp.getApp().getResources().getColor(R.color.red)
-                : TimelineApp.getApp().getResources().getColor(R.color.grey)
-                : TimelineApp.getApp().getResources().getColor(R.color.grey);
-
-        if (this.bookingData.isBookingCurrent()) {
-            width = dpToPx(300);
-        } else {
-            width = dpToPx(200);
-        }
-    }
-
-    public SDBookingData getBookingData() {
-        return bookingData;
-    }
-
-    public void setBookingData(SDBookingData bookingData) {
-        this.bookingData = bookingData;
     }
 
     public int getWidth() {
@@ -95,8 +64,20 @@ public class TimelineItemViewModel extends BaseObservable {
         this.topColor = topColor;
     }
 
-    public int dpToPx(int dp) {
-        DisplayMetrics displayMetrics = TimelineApp.getApp().getResources().getDisplayMetrics();
-        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    public boolean getIsCurrent() {
+        return isCurrent;
     }
+
+    public void setIsCurrent(boolean isCurrent) {
+        this.isCurrent = isCurrent;
+    }
+
+    public boolean getIsPayment() {
+        return isPayment;
+    }
+
+    public void setIsPayment(boolean isPayment) {
+        this.isPayment = isPayment;
+    }
+
 }

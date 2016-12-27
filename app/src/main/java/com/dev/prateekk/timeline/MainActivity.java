@@ -10,6 +10,7 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -122,29 +123,38 @@ public class MainActivity extends AppCompatActivity {
     private void prepareBookingData() {
 
         SDBookingData bookingData1 = new SDBookingData();
+        bookingData1.getBookingResponse().setKrn("111");
         bookingData1.setBookingCurrent(true);
         bookingData1.mBookingResponse.setStatus("accepted");
         bookingData1.mBookingResponse.customer_info.name = "Prateek1";
 
         SDBookingData bookingData2 = new SDBookingData();
+        bookingData2.getBookingResponse().setKrn("222");
         bookingData2.setBookingCurrent(false);
         bookingData2.mBookingResponse.setStatus("payment");
-        bookingData2.mBookingResponse.customer_info.name = "Prateek1";
+        bookingData2.mBookingResponse.customer_info.name = "Prateek2";
 
-        SDBookingData bookingData3 = new SDBookingData();
-        bookingData3.setBookingCurrent(false);
-        bookingData3.mBookingResponse.setStatus("accepted");
-        bookingData3.mBookingResponse.customer_info.name = "Prateek2";
+        HashMap<String, SDBookingData> bookingHashMap = new HashMap<>();
+        bookingHashMap.put("111", bookingData1);
+        bookingHashMap.put("222", bookingData2);
 
-        SDBookingData bookingData4 = new SDBookingData();
-        bookingData4.setBookingCurrent(false);
-        bookingData4.mBookingResponse.setStatus("payment");
-        bookingData4.mBookingResponse.customer_info.name = "Prateek2";
+        ArrayList<BookingPriority> bookingPriorityArrayList = new ArrayList<>();
+        bookingPriorityArrayList.add(new BookingPriority("111", "pickup"));
+        bookingPriorityArrayList.add(new BookingPriority("222", "pickup"));
+        bookingPriorityArrayList.add(new BookingPriority("111", "drop"));
+        bookingPriorityArrayList.add(new BookingPriority("222", "drop"));
 
-        timeLineItemList.add(new TimelineItemViewModel(bookingData1));
-        timeLineItemList.add(new TimelineItemViewModel(bookingData2));
-        timeLineItemList.add(new TimelineItemViewModel(bookingData3));
-        timeLineItemList.add(new TimelineItemViewModel(bookingData4));
+        TimelineAdapter.updateList(timeLineItemList, bookingHashMap, bookingPriorityArrayList);
+//        SDBookingData bookingData3 = new SDBookingData();
+//        bookingData3.setBookingCurrent(false);
+//        bookingData3.mBookingResponse.setStatus("accepted");
+//        bookingData3.mBookingResponse.customer_info.name = "Prateek2";
+//
+//        SDBookingData bookingData4 = new SDBookingData();
+//        bookingData4.setBookingCurrent(false);
+//        bookingData4.mBookingResponse.setStatus("payment");
+//        bookingData4.mBookingResponse.customer_info.name = "Prateek2";
+
 
     }
 }
