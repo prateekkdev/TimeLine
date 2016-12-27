@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src='@{timelineitem.isPayment ? @drawable/circle_red : @drawable/circle_green}'
+            android:src='@{timelineitem.midImgId}'
             android:visibility="@{!timelineitem.isCurrent ? View.VISIBLE : View.GONE}" />
 
         <ImageView

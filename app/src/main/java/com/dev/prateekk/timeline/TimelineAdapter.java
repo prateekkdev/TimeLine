@@ -25,9 +25,6 @@ public class TimelineAdapter {
 
             itemViewModel.setMidTitle(bookingData.getBookingResponse().getCustomer_info().name);
 
-            boolean belowPayment = !bookingData.getStatus().equalsIgnoreCase("payment");
-
-
             if (bookingData.isBookingCurrent() &&
                     !(priority.type.equalsIgnoreCase("pickup") && !bookingData.getStatus().equalsIgnoreCase("accepted")) &&
                     !(priority.type.equalsIgnoreCase("drop") && !bookingData.getStatus().equalsIgnoreCase("payment"))) {
@@ -48,23 +45,16 @@ public class TimelineAdapter {
                 timelineItemViewModelList = new ArrayList<>();
             }
 
-            if (bookingData.getStatus().equalsIgnoreCase("payment")) {
-                itemViewModel.setIsPayment(true);
-            } else {
-                itemViewModel.setIsPayment(false);
+            if (priority.type.equalsIgnoreCase("pickup")) {
+                itemViewModel.setTopColor(TimelineApp.getApp().getResources().getColor(R.color.green));
+                itemViewModel.setMidImgId(TimelineApp.getApp().getResources().getDrawable(R.drawable.circle_green));
+            } else if (priority.type.equalsIgnoreCase("drop")) {
+                itemViewModel.setTopColor(TimelineApp.getApp().getResources().getColor(R.color.red));
+                itemViewModel.setMidImgId(TimelineApp.getApp().getResources().getDrawable(R.drawable.circle_red));
             }
 
+
             timelineItemViewModelList.add(itemViewModel);
-
-            itemViewModel.setTopColor(bookingData.isBookingCurrent ? bookingData.getStatus().equalsIgnoreCase("accepted") ? TimelineApp.getApp().getResources().getColor(R.color.green)
-                    : bookingData.getStatus().equalsIgnoreCase("payment") ? TimelineApp.getApp().getResources().getColor(R.color.red)
-                    : TimelineApp.getApp().getResources().getColor(R.color.grey)
-                    : TimelineApp.getApp().getResources().getColor(R.color.grey));
-
-        }
-
-        if (timelineItemViewModelList.size() > 10) {
-            System.out.print(true);
         }
     }
 

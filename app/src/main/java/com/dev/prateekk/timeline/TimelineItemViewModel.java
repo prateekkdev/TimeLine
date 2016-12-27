@@ -1,6 +1,7 @@
 package com.dev.prateekk.timeline;
 
 import android.databinding.BaseObservable;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,11 +22,17 @@ public class TimelineItemViewModel extends BaseObservable {
 
     private boolean isCurrent;
 
-    private boolean isPayment;
-
-    private int midImg;
+    private Drawable midImgDrawable;
 
     public TimelineItemViewModel() {
+    }
+
+    public Drawable getMidImgId() {
+        return midImgDrawable;
+    }
+
+    public void setMidImgId(Drawable midImgId) {
+        this.midImgDrawable = midImgId;
     }
 
     public int getWidth() {
@@ -71,13 +78,4 @@ public class TimelineItemViewModel extends BaseObservable {
     public void setIsCurrent(boolean isCurrent) {
         this.isCurrent = isCurrent;
     }
-
-    public boolean getIsPayment() {
-        return isPayment;
-    }
-
-    public void setIsPayment(boolean isPayment) {
-        this.isPayment = isPayment;
-    }
-
 }
