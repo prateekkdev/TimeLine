@@ -27,6 +27,14 @@ public class TimelineItemViewModel extends BaseObservable {
     public TimelineItemViewModel() {
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Drawable getMidImgId() {
         return midImgDrawable;
     }
@@ -78,4 +86,14 @@ public class TimelineItemViewModel extends BaseObservable {
     public void setIsCurrent(boolean isCurrent) {
         this.isCurrent = isCurrent;
     }
+
+    /*
+    @Override
+    public boolean equals(Object obj) {
+        if (this.id.equalsIgnoreCase(((TimelineItemViewModel) obj).id)) {
+            return true;
+        }
+        return false;
+    }
+    */
 }

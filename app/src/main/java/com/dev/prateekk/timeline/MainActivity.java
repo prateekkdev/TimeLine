@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<TimelineItemViewModel> timeLineItemList = new ArrayList<>();
+    private ArrayList<TimelineItemViewModel> timeLineItemList = new ArrayList<>();
     private TimelineRecyclerView recyclerView;
     private TimelineRecyclerViewAdapter mAdapter;
 
