@@ -16,6 +16,24 @@ public class TimelineAdapter {
     public static final int GREEN = 0;
     public static final int RED = 1;
 
+    public static void updateNotCurrent(TimelineItemViewModel itemViewModel, String name) {
+        itemViewModel.setIsCurrent(false);
+        itemViewModel.setTopTitle(name);
+        itemViewModel.setWidth(dpToPx(200));
+    }
+
+    public static void updateCurrent(TimelineItemViewModel itemViewModel, String status) {
+        itemViewModel.setIsCurrent(true);
+
+        itemViewModel.setTopTitle(status.equalsIgnoreCase("accepted")
+                ? "PICKUP" : status.equalsIgnoreCase("driver_reached")
+                ? "WAIT FOR" : status.equalsIgnoreCase("invoice")
+                ? "BILLING FOR" : status.equalsIgnoreCase("payment")
+                ? "DROP" : "");
+        itemViewModel.setWidth(dpToPx(300));
+
+    }
+
     public static void updateList(List<TimelineItemViewModel> timelineItemViewModelList, HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> priorityList) {
 
         for (BookingPriority priority : priorityList) {
@@ -23,22 +41,22 @@ public class TimelineAdapter {
 
             SDBookingData bookingData = bookingHashMap.get(priority.krn);
 
+            String status = bookingData.getStatus();
+
             itemViewModel.setMidTitle(bookingData.getBookingResponse().getCustomer_info().name);
 
-            if (bookingData.isBookingCurrent() &&
-                    !(priority.type.equalsIgnoreCase("pickup") && !bookingData.getStatus().equalsIgnoreCase("accepted")) &&
-                    !(priority.type.equalsIgnoreCase("drop") && !bookingData.getStatus().equalsIgnoreCase("payment"))) {
-                itemViewModel.setIsCurrent(true);
-                itemViewModel.setTopTitle(bookingData.getStatus().equalsIgnoreCase("accepted")
-                        ? "PICKUP" : bookingData.getStatus().equalsIgnoreCase("driver_reached")
-                        ? "WAIT FOR" : bookingData.getStatus().equalsIgnoreCase("invoice")
-                        ? "BILLING FOR" : bookingData.getStatus().equalsIgnoreCase("payment")
-                        ? "DROP" : "");
-                itemViewModel.setWidth(dpToPx(300));
+            if (bookingData.isBookingCurrent()) {
+                if ((status.equalsIgnoreCase("accepted") && priority.type.equalsIgnoreCase("drop")) ||
+                        (status.equalsIgnoreCase("payment") && priority.type.equalsIgnoreCase("pickup")) ||
+                        (status.equalsIgnoreCase("invoice") && priority.type.equalsIgnoreCase("drop")) ||
+                        (status.equalsIgnoreCase("driver_reached") && priority.type.equalsIgnoreCase("drop"))) {
+                    // This is not current action, this item is for pickup already done or drop pending
+                    updateNotCurrent(itemViewModel, bookingData.getBookingResponse().getCustomer_info().name);
+                } else {
+                    updateCurrent(itemViewModel, status);
+                }
             } else {
-                itemViewModel.setIsCurrent(false);
-                itemViewModel.setTopTitle(bookingData.getBookingResponse().getCustomer_info().name);
-                itemViewModel.setWidth(dpToPx(200));
+                updateNotCurrent(itemViewModel, bookingData.getBookingResponse().getCustomer_info().name);
             }
 
             if (timelineItemViewModelList == null) {
@@ -52,7 +70,6 @@ public class TimelineAdapter {
                 itemViewModel.setTopColor(TimelineApp.getApp().getResources().getColor(R.color.red));
                 itemViewModel.setMidImgId(TimelineApp.getApp().getResources().getDrawable(R.drawable.circle_red));
             }
-
 
             timelineItemViewModelList.add(itemViewModel);
         }

@@ -124,14 +124,14 @@ public class MainActivity extends AppCompatActivity {
 
         SDBookingData bookingData1 = new SDBookingData();
         bookingData1.getBookingResponse().setKrn("111");
-        bookingData1.setBookingCurrent(true);
+        bookingData1.setBookingCurrent(false);
         bookingData1.mBookingResponse.setStatus("accepted");
         bookingData1.mBookingResponse.customer_info.name = "Prateek1";
 
         SDBookingData bookingData2 = new SDBookingData();
         bookingData2.getBookingResponse().setKrn("222");
-        bookingData2.setBookingCurrent(false);
-        bookingData2.mBookingResponse.setStatus("payment");
+        bookingData2.setBookingCurrent(true);
+        bookingData2.mBookingResponse.setStatus("invoice");
         bookingData2.mBookingResponse.customer_info.name = "Prateek2";
 
         HashMap<String, SDBookingData> bookingHashMap = new HashMap<>();
@@ -140,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<BookingPriority> bookingPriorityArrayList = new ArrayList<>();
         bookingPriorityArrayList.add(new BookingPriority("111", "pickup"));
-        bookingPriorityArrayList.add(new BookingPriority("222", "pickup"));
         bookingPriorityArrayList.add(new BookingPriority("111", "drop"));
+        bookingPriorityArrayList.add(new BookingPriority("222", "pickup"));
         bookingPriorityArrayList.add(new BookingPriority("222", "drop"));
 
         TimelineAdapter.updateList(timeLineItemList, bookingHashMap, bookingPriorityArrayList);
