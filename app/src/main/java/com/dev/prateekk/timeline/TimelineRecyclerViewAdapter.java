@@ -15,16 +15,16 @@ import java.util.List;
  * Created by prateek.kesarwani on 15/12/16.
  */
 
-public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.BindingHolder> {
+public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRecyclerViewAdapter.BindingHolder> {
 
     private static final int VIEW_TYPE_FIRST = 1;
     private static final int VIEW_TYPE_MAIN = 2;
     private static final int VIEW_TYPE_LAST = 3;
 
-    private List<TimelineItemModel> timelineItemModelList;
+    private List<TimelineItemViewModel> timelineItemViewModelList;
 
-    public TimelineAdapter(List<TimelineItemModel> timelineItemModelList) {
-        this.timelineItemModelList = timelineItemModelList;
+    public TimelineRecyclerViewAdapter(List<TimelineItemViewModel> timelineItemViewModelList) {
+        this.timelineItemViewModelList = timelineItemViewModelList;
     }
 
     @BindingAdapter("android:layout_width")
@@ -52,7 +52,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
 
 
     @Override
-    public TimelineAdapter.BindingHolder onCreateViewHolder(ViewGroup parent, int type) {
+    public TimelineRecyclerViewAdapter.BindingHolder onCreateViewHolder(ViewGroup parent, int type) {
 
         View v;
 
@@ -78,7 +78,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
             // As 0th position is for padding
             position = position - 1;
 
-            final TimelineItemModel item = timelineItemModelList.get(position);
+            final TimelineItemViewModel item = timelineItemViewModelList.get(position);
             holder.getBinding().setVariable(BR.timelineitem, item);
             holder.getBinding().executePendingBindings();
         }
@@ -86,7 +86,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Bindin
 
     @Override
     public int getItemCount() {
-        return timelineItemModelList.size() + 2;
+        return timelineItemViewModelList.size() + 2;
     }
 
     public class BindingHolder extends RecyclerView.ViewHolder {

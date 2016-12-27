@@ -9,7 +9,7 @@ import android.widget.Toast;
  * Created by prateek.kesarwani on 15/12/16.
  */
 
-public class TimelineItemModel extends BaseObservable {
+public class TimelineItemViewModel extends BaseObservable {
 
     private String topTitle;
     private int topColor;
@@ -20,10 +20,10 @@ public class TimelineItemModel extends BaseObservable {
 
     private SDBookingData bookingData;
 
-    public TimelineItemModel() {
+    public TimelineItemViewModel() {
     }
 
-    public TimelineItemModel(SDBookingData bookingData) {
+    public TimelineItemViewModel(SDBookingData bookingData) {
         this.bookingData = bookingData;
 
         // This name, get from utility which validates and returns proper name to display.

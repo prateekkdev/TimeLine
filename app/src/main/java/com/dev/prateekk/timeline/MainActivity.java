@@ -14,9 +14,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<TimelineItemModel> timeLineItemList = new ArrayList<>();
+    private List<TimelineItemViewModel> timeLineItemList = new ArrayList<>();
     private TimelineRecyclerView recyclerView;
-    private TimelineAdapter mAdapter;
+    private TimelineRecyclerViewAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (TimelineRecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapter = new TimelineAdapter(timeLineItemList);
+        mAdapter = new TimelineRecyclerViewAdapter(timeLineItemList);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (timeLineItemList.size() > 0) {
-                    TimelineItemModel item = timeLineItemList.remove(0);
+                    TimelineItemViewModel item = timeLineItemList.remove(0);
                     mAdapter.notifyDataSetChanged();
                 }
             }
@@ -141,10 +141,10 @@ public class MainActivity extends AppCompatActivity {
         bookingData4.mBookingResponse.setStatus("payment");
         bookingData4.mBookingResponse.customer_info.name = "Prateek2";
 
-        timeLineItemList.add(new TimelineItemModel(bookingData1));
-        timeLineItemList.add(new TimelineItemModel(bookingData2));
-        timeLineItemList.add(new TimelineItemModel(bookingData3));
-        timeLineItemList.add(new TimelineItemModel(bookingData4));
+        timeLineItemList.add(new TimelineItemViewModel(bookingData1));
+        timeLineItemList.add(new TimelineItemViewModel(bookingData2));
+        timeLineItemList.add(new TimelineItemViewModel(bookingData3));
+        timeLineItemList.add(new TimelineItemViewModel(bookingData4));
 
     }
 }
