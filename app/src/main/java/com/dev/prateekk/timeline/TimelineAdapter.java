@@ -11,7 +11,65 @@ import java.util.HashMap;
 
 public class TimelineAdapter {
 
-    public static void updateList(ArrayList<TimelineItemViewModel> timelineItemViewModelList, HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> priorityList) {
+    private int currentIndex;
+    private ArrayList<TimelineItemViewModel> timelineItemViewModelList = new ArrayList<>();
+    private HashMap<String, SDBookingData> bookingHashMap;
+    private ArrayList<BookingPriority> priorityList;
+
+    public TimelineAdapter(HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> priorityList) {
+        this.bookingHashMap = bookingHashMap;
+        this.priorityList = priorityList;
+
+        updateList();
+    }
+
+    public ArrayList<TimelineItemViewModel> getTimelineItemViewModelList() {
+        return timelineItemViewModelList;
+    }
+
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+
+    public boolean isItemAlreadyAdded(String krn, ArrayList<TimelineItemViewModel> timelineItemViewModelList) {
+
+        for (TimelineItemViewModel item : timelineItemViewModelList) {
+            if (item.getId().equalsIgnoreCase(krn)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void updateNotCurrent(TimelineItemViewModel itemViewModel, String name) {
+        itemViewModel.setIsCurrent(false);
+        itemViewModel.setTopTitle(name);
+        itemViewModel.setWidth(dpToPx(200));
+    }
+
+    public void updateCurrent(TimelineItemViewModel itemViewModel, String status) {
+
+        // This currentItem would be added later, so size would be its index
+        currentIndex = timelineItemViewModelList.size();
+
+        itemViewModel.setIsCurrent(true);
+
+        itemViewModel.setTopTitle(status.equalsIgnoreCase("accepted")
+                ? "PICKUP" : status.equalsIgnoreCase("driver_reached")
+                ? "WAIT FOR" : status.equalsIgnoreCase("invoice")
+                ? "BILLING FOR" : status.equalsIgnoreCase("payment")
+                ? "DROP" : "");
+        itemViewModel.setWidth(dpToPx(300));
+
+    }
+
+    public int dpToPx(int dp) {
+        DisplayMetrics displayMetrics = TimelineApp.getApp().getResources().getDisplayMetrics();
+        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
+    public void updateList() {
 
         // This flag would be used to grey out all data upto current action
         // This would also ensure for completed booking we have only one variant of item(not pickup and drop - as would give same info)
@@ -43,10 +101,6 @@ public class TimelineAdapter {
                 updateNotCurrent(itemViewModel, bookingData.getBookingResponse().getCustomer_info().name);
             }
 
-            if (timelineItemViewModelList == null) {
-                timelineItemViewModelList = new ArrayList<>();
-            }
-
             if (!reachedCurrent) {
 
                 // If this krn is already there before current action, means this is completed, so shouldn't be repeated as would not give any extra info.
@@ -75,39 +129,5 @@ public class TimelineAdapter {
 
             timelineItemViewModelList.add(itemViewModel);
         }
-    }
-
-    public static boolean isItemAlreadyAdded(String krn, ArrayList<TimelineItemViewModel> timelineItemViewModelList) {
-
-        for (TimelineItemViewModel item : timelineItemViewModelList) {
-            if (item.getId().equalsIgnoreCase(krn)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public static void updateNotCurrent(TimelineItemViewModel itemViewModel, String name) {
-        itemViewModel.setIsCurrent(false);
-        itemViewModel.setTopTitle(name);
-        itemViewModel.setWidth(dpToPx(200));
-    }
-
-    public static void updateCurrent(TimelineItemViewModel itemViewModel, String status) {
-        itemViewModel.setIsCurrent(true);
-
-        itemViewModel.setTopTitle(status.equalsIgnoreCase("accepted")
-                ? "PICKUP" : status.equalsIgnoreCase("driver_reached")
-                ? "WAIT FOR" : status.equalsIgnoreCase("invoice")
-                ? "BILLING FOR" : status.equalsIgnoreCase("payment")
-                ? "DROP" : "");
-        itemViewModel.setWidth(dpToPx(300));
-
-    }
-
-    public static int dpToPx(int dp) {
-        DisplayMetrics displayMetrics = TimelineApp.getApp().getResources().getDisplayMetrics();
-        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 }

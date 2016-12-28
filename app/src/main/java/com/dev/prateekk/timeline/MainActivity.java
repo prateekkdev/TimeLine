@@ -11,10 +11,12 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    ArrayList<BookingPriority> bookingPriorityArrayList = new ArrayList<>();
+    HashMap<String, SDBookingData> bookingHashMap = new HashMap<>();
+    TimelineAdapter timelineAdapter;
     private ArrayList<TimelineItemViewModel> timeLineItemList = new ArrayList<>();
     private TimelineRecyclerView recyclerView;
     private TimelineRecyclerViewAdapter mAdapter;
@@ -26,16 +28,21 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (TimelineRecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapter = new TimelineRecyclerViewAdapter(timeLineItemList);
-
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        timelineAdapter = new TimelineAdapter(bookingHashMap, bookingPriorityArrayList);
+        mAdapter = new TimelineRecyclerViewAdapter(timelineAdapter);
         recyclerView.setAdapter(mAdapter);
 
         initTemp();
 
-        prepareBookingData();
+        addBookingData();
+
+        timelineAdapter.updateList();
+
+        // int currentPosition = timelineAdapter.getCurrentIndex() + 2;
 
 //        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 //
@@ -115,12 +122,12 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                recyclerView.scrollListToPosition(recyclerView, 0);
+                recyclerView.scrollListToPosition(recyclerView, MainActivity.this.timelineAdapter.getCurrentIndex());
             }
         }, 2000);
     }
 
-    private void prepareBookingData() {
+    private void addBookingData() {
 
         SDBookingData bookingData1 = new SDBookingData();
         bookingData1.getBookingResponse().setKrn("111");
@@ -134,17 +141,16 @@ public class MainActivity extends AppCompatActivity {
         bookingData2.mBookingResponse.setStatus("invoice");
         bookingData2.mBookingResponse.customer_info.name = "Prateek2";
 
-        HashMap<String, SDBookingData> bookingHashMap = new HashMap<>();
         bookingHashMap.put("111", bookingData1);
         bookingHashMap.put("222", bookingData2);
 
-        ArrayList<BookingPriority> bookingPriorityArrayList = new ArrayList<>();
+
         bookingPriorityArrayList.add(new BookingPriority("111", "pickup"));
         bookingPriorityArrayList.add(new BookingPriority("111", "drop"));
         bookingPriorityArrayList.add(new BookingPriority("222", "pickup"));
         bookingPriorityArrayList.add(new BookingPriority("222", "drop"));
 
-        TimelineAdapter.updateList(timeLineItemList, bookingHashMap, bookingPriorityArrayList);
+        // TimelineAdapter.updateList();
 //        SDBookingData bookingData3 = new SDBookingData();
 //        bookingData3.setBookingCurrent(false);
 //        bookingData3.mBookingResponse.setStatus("accepted");
