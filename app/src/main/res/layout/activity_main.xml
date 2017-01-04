@@ -23,54 +23,60 @@
             android:visibility="@{timeline.showTimeline ? View.VISIBLE : View.GONE}" />
 
         <RelativeLayout
-            android:id="@+id/timeline_end_trip"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:layout_below="@id/timeline_recycler_view"
-            android:background="@color/green"
-            android:visibility="@{timeline.showEndTrip ? View.VISIBLE : View.GONE}" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timeline_recycler_view">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:layout_below="@id/timeline_recycler_view"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="@{timeline.showEndTrip ? View.GONE : View.VISIBLE}">
-
-            <TextView
-                android:id="@+id/txt_item_mobile"
+            <RelativeLayout
+                android:id="@+id/timeline_end_trip"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/line_divider"
-                android:gravity="center"
-                android:text="@{timeline.mobileNo}"
-                android:textColor="#000000"
-                android:visibility="@{timeline.showMobile ? View.VISIBLE : View.GONE}" />
+                android:layout_height="42dp"
+                android:background="@color/green"
+                android:visibility="@{timeline.showEndTrip ? View.VISIBLE : View.GONE}" />
 
-            <TextView
-                android:id="@id/line_divider"
-                android:layout_width="2dp"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="#e6e8ea" />
-
-            <TextView
-                android:id="@+id/txt_item_cancel"
-
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/line_divider"
+                android:layout_height="42dp"
                 android:gravity="center"
-                android:text="CANCEL BOOKING"
-                android:textColor="#000000"
-                android:visibility="@{timeline.showCancel ? View.VISIBLE : View.GONE}" />
+                android:orientation="horizontal"
+                android:visibility="@{timeline.showEndTrip ? View.GONE : View.VISIBLE}">
 
+                <TextView
+                    android:id="@+id/txt_item_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/line_divider"
+                    android:gravity="center"
+                    android:text="@{timeline.mobileNo}"
+                    android:textColor="#000000"
+                    android:visibility="@{timeline.showMobile ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                    android:id="@id/line_divider"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#e6e8ea"
+                    android:visibility="@{timeline.showMobile &amp;&amp; timeline.showCancel ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                    android:id="@+id/txt_item_cancel"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/line_divider"
+                    android:gravity="center"
+                    android:text="CANCEL BOOKING"
+                    android:textColor="#000000"
+                    android:visibility="@{timeline.showCancel ? View.VISIBLE : View.GONE}" />
+
+            </RelativeLayout>
         </RelativeLayout>
+
 
         <Button
             android:id="@+id/button_temp"
