@@ -2,11 +2,17 @@ package com.dev.prateekk.timeline;
 
 import android.databinding.BaseObservable;
 
+import java.util.HashMap;
+
 /**
  * Created by prateek.kesarwani on 04/01/17.
  */
 
 public class TimelineViewModel extends BaseObservable {
+
+    private HashMap<String, SDBookingData> bookingHashMap;
+
+    private SDBookingData currentBookingDataItem;
 
     private boolean shouldShowTimeline;
 
@@ -18,43 +24,58 @@ public class TimelineViewModel extends BaseObservable {
 
     private String mobileNo;
 
-    public boolean shouldShowTimeline() {
-        return shouldShowTimeline;
+    public TimelineViewModel(HashMap<String, SDBookingData> bookingHashMap) {
+        this.bookingHashMap = bookingHashMap;
     }
 
-    public void setShouldShowTimeline(boolean shouldShowTimeline) {
-        this.shouldShowTimeline = shouldShowTimeline;
+    public SDBookingData getCurrentBookingDataItem() {
+        return currentBookingDataItem;
     }
 
-    public boolean shouldShowCancel() {
-        return shouldShowCancel;
+    public void setCurrentBookingDataItem(SDBookingData currentBookingDataItem) {
+        this.currentBookingDataItem = currentBookingDataItem;
     }
 
-    public void setShouldShowCancel(boolean shouldShowCancel) {
-        this.shouldShowCancel = shouldShowCancel;
+    public boolean getShowTimeline() {
+
+        if (bookingHashMap != null && bookingHashMap.size() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
-    public boolean shouldShowMobile() {
-        return shouldShowMobile;
+    public boolean getShowCancel() {
+
+        /**
+         * Currently we aren't maintaining completed state in hash map, rather hash map is emptied after stop trip.
+         */
+        if (currentBookingDataItem != null && (currentBookingDataItem.getStatus().equalsIgnoreCase("payment")
+                || currentBookingDataItem.getStatus().equalsIgnoreCase("completed"))) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    public void setShouldShowMobile(boolean shouldShowMobile) {
-        this.shouldShowMobile = shouldShowMobile;
+    public boolean getShowMobile() {
+        if (currentBookingDataItem != null && currentBookingDataItem.getStatus().equalsIgnoreCase("payment")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public String getMobileNo() {
-        return mobileNo;
+        return currentBookingDataItem.getBookingResponse().customer_info.phone_no;
     }
 
-    public void setMobileNo(String mobileNo) {
-        this.mobileNo = mobileNo;
-    }
-
-    public boolean shouldShowEndTrip() {
-        return shouldShowEndTrip;
-    }
-
-    public void setShouldShowEndTrip(boolean shouldShowEndTrip) {
-        this.shouldShowEndTrip = shouldShowEndTrip;
+    public boolean getShowEndTrip() {
+        if (currentBookingDataItem != null && currentBookingDataItem.getStatus().equalsIgnoreCase("payment")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.dev.prateekk.timeline;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 
+import com.dev.prateekk.timeline.databinding.ActivityMainBinding;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<BookingPriority> bookingPriorityArrayList = new ArrayList<>();
     HashMap<String, SDBookingData> bookingHashMap = new HashMap<>();
-    TimelineAdapter timelineAdapter;
+    TimelineItemAdapter timelineItemAdapter;
     private ArrayList<TimelineItemViewModel> timeLineItemList = new ArrayList<>();
     private TimelineRecyclerView recyclerView;
     private TimelineRecyclerViewAdapter mAdapter;
@@ -24,7 +27,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        addBookingData();
+
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        TimelineViewModel timelineViewModel = new TimelineViewModel(bookingHashMap);
+        timelineViewModel.setCurrentBookingDataItem(bookingHashMap.get("222"));
+
+        binding.setTimeline(timelineViewModel);
 
         recyclerView = (TimelineRecyclerView) findViewById(R.id.timeline_recycler_view);
 
@@ -32,17 +42,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        timelineAdapter = new TimelineAdapter(bookingHashMap, bookingPriorityArrayList);
-        mAdapter = new TimelineRecyclerViewAdapter(timelineAdapter);
+        timelineItemAdapter = new TimelineItemAdapter(bookingHashMap, bookingPriorityArrayList);
+        mAdapter = new TimelineRecyclerViewAdapter(timelineItemAdapter);
         recyclerView.setAdapter(mAdapter);
 
         initTemp();
 
-        addBookingData();
+        timelineItemAdapter.updateList();
 
-        timelineAdapter.updateList();
-
-        // int currentPosition = timelineAdapter.getCurrentIndex() + 2;
+        // int currentPosition = timelineItemAdapter.getCurrentIndex() + 2;
 
 //        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 //
@@ -122,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                recyclerView.scrollListToPosition(recyclerView, MainActivity.this.timelineAdapter.getCurrentIndex());
+                recyclerView.scrollListToPosition(recyclerView, MainActivity.this.timelineItemAdapter.getCurrentIndex());
             }
         }, 2000);
     }
@@ -141,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         bookingData2.setBookingCurrent(true);
         bookingData2.mBookingResponse.setStatus("invoice");
         bookingData2.mBookingResponse.customer_info.name = "Prateek2";
+        bookingData2.mBookingResponse.customer_info.phone_no = "0987890";
 
         bookingHashMap.put("111", bookingData1);
         bookingHashMap.put("222", bookingData2);
@@ -151,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         bookingPriorityArrayList.add(new BookingPriority("222", "pickup"));
         bookingPriorityArrayList.add(new BookingPriority("222", "drop"));
 
-        // TimelineAdapter.updateList();
+        // TimelineItemAdapter.updateList();
 //        SDBookingData bookingData3 = new SDBookingData();
 //        bookingData3.setBookingCurrent(false);
 //        bookingData3.mBookingResponse.setStatus("accepted");

@@ -9,14 +9,14 @@ import java.util.HashMap;
  * Created by prateek.kesarwani on 27/12/16.
  */
 
-public class TimelineAdapter {
+public class TimelineItemAdapter {
 
     private int currentIndex;
     private ArrayList<TimelineItemViewModel> timelineItemViewModelList = new ArrayList<>();
     private HashMap<String, SDBookingData> bookingHashMap;
     private ArrayList<BookingPriority> priorityList;
 
-    public TimelineAdapter(HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> priorityList) {
+    public TimelineItemAdapter(HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> priorityList) {
         this.bookingHashMap = bookingHashMap;
         this.priorityList = priorityList;
 
@@ -126,19 +126,6 @@ public class TimelineAdapter {
             }
 
             itemViewModel.setId(bookingData.getKrn());
-
-            // Mobile no. would be visible all the time.
-            itemViewModel.setMobileNo(bookingData.getBookingResponse().getCustomer_info().phone_no);
-
-
-            // Cancel item won't be visible after payment.
-            if (bookingData.getStatus().equalsIgnoreCase("accepted") ||
-                    bookingData.getStatus().equalsIgnoreCase("driver_reached") ||
-                    bookingData.getStatus().equalsIgnoreCase("payment")) {
-                itemViewModel.setShouldShowCancel(true);
-            } else {
-                itemViewModel.setShouldShowCancel(false);
-            }
 
             timelineItemViewModelList.add(itemViewModel);
         }

@@ -24,19 +24,7 @@ public class TimelineItemViewModel extends BaseObservable {
 
     private Drawable midImgDrawable;
 
-    private boolean shouldShowCancel;
-
-    private String mMobileNo;
-
     public TimelineItemViewModel() {
-    }
-
-    public boolean shouldShowCancel() {
-        return shouldShowCancel;
-    }
-
-    public void setShouldShowCancel(boolean shouldShowCancel) {
-        this.shouldShowCancel = shouldShowCancel;
     }
 
     public String getId() {
@@ -97,14 +85,6 @@ public class TimelineItemViewModel extends BaseObservable {
 
     public void setIsCurrent(boolean isCurrent) {
         this.isCurrent = isCurrent;
-    }
-
-    public String getMobileNo() {
-        return mMobileNo;
-    }
-
-    public void setMobileNo(String mMobileNo) {
-        this.mMobileNo = mMobileNo;
     }
 
     /*
