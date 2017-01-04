@@ -14,16 +14,6 @@ public class TimelineViewModel extends BaseObservable {
 
     private SDBookingData currentBookingDataItem;
 
-    private boolean shouldShowTimeline;
-
-    private boolean shouldShowCancel;
-
-    private boolean shouldShowMobile;
-
-    private boolean shouldShowEndTrip;
-
-    private String mobileNo;
-
     public TimelineViewModel(HashMap<String, SDBookingData> bookingHashMap) {
         this.bookingHashMap = bookingHashMap;
     }
