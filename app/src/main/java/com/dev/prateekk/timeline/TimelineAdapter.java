@@ -127,6 +127,19 @@ public class TimelineAdapter {
 
             itemViewModel.setId(bookingData.getKrn());
 
+            // Mobile no. would be visible all the time.
+            itemViewModel.setMobileNo(bookingData.getBookingResponse().getCustomer_info().phone_no);
+
+
+            // Cancel item won't be visible after payment.
+            if (bookingData.getStatus().equalsIgnoreCase("accepted") ||
+                    bookingData.getStatus().equalsIgnoreCase("driver_reached") ||
+                    bookingData.getStatus().equalsIgnoreCase("payment")) {
+                itemViewModel.setShouldShowCancel(true);
+            } else {
+                itemViewModel.setShouldShowCancel(false);
+            }
+
             timelineItemViewModelList.add(itemViewModel);
         }
     }

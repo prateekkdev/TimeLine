@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (TimelineRecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = (TimelineRecyclerView) findViewById(R.id.timeline_recycler_view);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         bookingData1.setBookingCurrent(false);
         bookingData1.mBookingResponse.setStatus("accepted");
         bookingData1.mBookingResponse.customer_info.name = "Prateek1";
+        bookingData1.mBookingResponse.customer_info.phone_no = "7022359793";
 
         SDBookingData bookingData2 = new SDBookingData();
         bookingData2.getBookingResponse().setKrn("222");
