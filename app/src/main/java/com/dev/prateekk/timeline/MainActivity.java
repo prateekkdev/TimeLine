@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         SDBookingData bookingData2 = new SDBookingData();
         bookingData2.getBookingResponse().setKrn("222");
         bookingData2.setBookingCurrent(true);
-        bookingData2.mBookingResponse.setStatus("invoice");
+        bookingData2.mBookingResponse.setStatus("payment");
         bookingData2.mBookingResponse.customer_info.name = "Prateek2";
         bookingData2.mBookingResponse.customer_info.phone_no = "0987890";
 

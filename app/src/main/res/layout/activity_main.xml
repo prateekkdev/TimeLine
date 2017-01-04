@@ -23,11 +23,20 @@
             android:visibility="@{timeline.showTimeline ? View.VISIBLE : View.GONE}" />
 
         <RelativeLayout
+            android:id="@+id/timeline_end_trip"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_below="@id/timeline_recycler_view"
+            android:background="@color/green"
+            android:visibility="@{timeline.showEndTrip ? View.VISIBLE : View.GONE}" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:layout_below="@id/timeline_recycler_view"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="@{timeline.showEndTrip ? View.GONE : View.VISIBLE}">
 
             <TextView
                 android:id="@+id/txt_item_mobile"
