@@ -65,6 +65,20 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new TimelineRecyclerViewAdapter(timelineItemAdapter);
         recyclerView.setAdapter(mAdapter);
 
+
+        // TODO Could stuff like this be done using RxJava
+        recyclerView.setRecyclerViewInterface(new TimelineRecyclerViewInterface() {
+            @Override
+            public void onScrolled() {
+
+                // TODO Think of a better way
+                // If drop down open, need to close
+                if (timelineViewModel.getDropDownSelected()) {
+                    timelineViewModel.setSelectedBookingDataItem(null);
+                }
+            }
+        });
+
         initTemp();
 
         timelineItemAdapter.updateList();

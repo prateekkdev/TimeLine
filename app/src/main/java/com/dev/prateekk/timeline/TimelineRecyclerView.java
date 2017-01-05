@@ -19,6 +19,8 @@ public class TimelineRecyclerView extends RecyclerView {
     private float extraItemWidth;
     private float totalPixelMovement;
 
+    private TimelineRecyclerViewInterface recyclerViewInterface;
+
     public TimelineRecyclerView(Context context) {
         super(context);
         initRecyclerView(context);
@@ -32,6 +34,14 @@ public class TimelineRecyclerView extends RecyclerView {
     public TimelineRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initRecyclerView(context);
+    }
+
+    public TimelineRecyclerViewInterface getRecyclerViewInterface() {
+        return recyclerViewInterface;
+    }
+
+    public void setRecyclerViewInterface(TimelineRecyclerViewInterface recyclerViewInterface) {
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     private void initRecyclerView(Context context) {
@@ -50,6 +60,10 @@ public class TimelineRecyclerView extends RecyclerView {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 totalPixelMovement += dx;
+
+                if (recyclerViewInterface != null) {
+                    recyclerViewInterface.onScrolled();
+                }
             }
         });
 
