@@ -1,6 +1,7 @@
 package com.dev.prateekk.timeline;
 
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 
 import java.util.HashMap;
 
@@ -18,22 +19,23 @@ public class TimelineViewModel extends BaseObservable {
         this.bookingHashMap = bookingHashMap;
     }
 
+    @Bindable
     public SDBookingData getSelectedBookingDataItem() {
         return selectedBookingDataItem;
     }
 
     public void setSelectedBookingDataItem(SDBookingData selectedBookingDataItem) {
         this.selectedBookingDataItem = selectedBookingDataItem;
+        // notifyPropertyChanged(BR.selectedBookingDataItem);
+        notifyChange();
     }
 
     public boolean getShowTimeline() {
 
         if (bookingHashMap != null && bookingHashMap.size() > 0) {
             return true;
-        } else {
-            return false;
         }
-
+        return false;
     }
 
     public boolean getShowCancel() {
@@ -41,24 +43,26 @@ public class TimelineViewModel extends BaseObservable {
         /**
          * Currently we aren't maintaining completed state in hash map, rather hash map is emptied after stop trip.
          */
-        if (selectedBookingDataItem != null && (selectedBookingDataItem.getStatus().equalsIgnoreCase("payment")
-                || selectedBookingDataItem.getStatus().equalsIgnoreCase("completed"))) {
+        if (selectedBookingDataItem == null || ((selectedBookingDataItem.getStatus().equalsIgnoreCase("payment")
+                || selectedBookingDataItem.getStatus().equalsIgnoreCase("completed")))) {
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     public boolean getShowMobile() {
-        if (selectedBookingDataItem != null && selectedBookingDataItem.getStatus().equalsIgnoreCase("payment")) {
+        if (selectedBookingDataItem == null || selectedBookingDataItem.getStatus().equalsIgnoreCase("payment")) {
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     public String getMobileNo() {
-        return selectedBookingDataItem.getBookingResponse().customer_info.phone_no;
+        if (selectedBookingDataItem != null) {
+            return selectedBookingDataItem.getBookingResponse().customer_info.phone_no;
+        }
+        return "";
+
     }
 
     public boolean getShowEndTrip() {
@@ -74,5 +78,9 @@ public class TimelineViewModel extends BaseObservable {
             return selectedBookingDataItem.getKrn();
         }
         return "";
+    }
+
+    public boolean getDropDownSelected() {
+        return selectedBookingDataItem == null ? false : true;
     }
 }
