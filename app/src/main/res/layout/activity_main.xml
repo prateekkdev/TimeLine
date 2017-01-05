@@ -28,8 +28,15 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/timeline_recycler_view">
+            android:layout_height="46dp"
+            android:layout_below="@id/timeline_recycler_view"
+            android:visibility="@{timeline.dropDownSelected ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentTop="true"
+                android:background="@color/divider" />
 
             <RelativeLayout
                 android:id="@+id/timeline_end_trip"
@@ -53,17 +60,17 @@
                     android:layout_toLeftOf="@+id/line_divider"
                     android:gravity="center"
                     android:text="@{timeline.mobileNo}"
-                    android:textColor="#000000"
+                    android:textColor="@color/font"
                     android:visibility="@{timeline.showMobile ? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     android:id="@id/line_divider"
-                    android:layout_width="2dp"
+                    android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#e6e8ea"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/divider"
                     android:visibility="@{timeline.showMobile &amp;&amp; timeline.showCancel ? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -75,10 +82,17 @@
                     android:gravity="center"
                     android:onClick="@{(v)->handlers.onCancelTrip(v, timeline.bookingId)}"
                     android:text="CANCEL BOOKING"
-                    android:textColor="#000000"
+                    android:textColor="@color/red"
                     android:visibility="@{timeline.showCancel ? View.VISIBLE : View.GONE}" />
 
             </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider" />
+
         </RelativeLayout>
 
 
