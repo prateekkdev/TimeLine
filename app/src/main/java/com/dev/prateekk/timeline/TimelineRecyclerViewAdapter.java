@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.dev.prateekk.timeline.databinding.ItemTimelineMainBinding;
+
 import java.util.List;
 
 /**
@@ -84,6 +86,9 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
 
             final TimelineItemViewModel item = timelineItemViewModelList.get(position);
             holder.getBinding().setVariable(BR.timelineitem, item);
+
+            ((ItemTimelineMainBinding) holder.getBinding()).setHandlers(new TimelineHandler());
+
             holder.getBinding().executePendingBindings();
         }
     }
@@ -99,6 +104,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
         public BindingHolder(View rowView) {
             super(rowView);
             binding = DataBindingUtil.bind(rowView);
+
         }
 
         public ViewDataBinding getBinding() {

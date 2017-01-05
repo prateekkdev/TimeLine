@@ -6,6 +6,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="handlers"
+            type="com.dev.prateekk.timeline.TimelineHandler" />
+
+        <variable
             name="timelineitem"
             type="com.dev.prateekk.timeline.TimelineItemViewModel" />
     </data>
@@ -59,6 +63,7 @@
             android:layout_height="20dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:onClick="@{handlers::onShowDropDown}"
             android:src="@mipmap/ic_chevron" />
     </RelativeLayout>
 

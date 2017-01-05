@@ -9,11 +9,20 @@ import android.widget.Toast;
 
 public class TimelineHandler {
 
+
     public TimelineHandler() {
-        System.out.print(true);
+
     }
 
-    public void onClickInfo(View view) {
-        Toast.makeText(view.getContext(), "View Clicked", Toast.LENGTH_SHORT).show();
+    public void onShowDropDown(View view) {
+        Toast.makeText(TimelineApp.getApp(), "Drop Down Click", Toast.LENGTH_LONG).show();
+    }
+
+    public void onEndTrip(View view) {
+
+    }
+
+    public void onCancelTrip(View view) {
+        Toast.makeText(TimelineApp.getApp(), "Cancel Click", Toast.LENGTH_LONG).show();
     }
 }
