@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         TimelineViewModel timelineViewModel = new TimelineViewModel(bookingHashMap);
-        timelineViewModel.setCurrentBookingDataItem(bookingHashMap.get("222"));
+        timelineViewModel.setSelectedBookingDataItem(bookingHashMap.get("222"));
 
         binding.setTimeline(timelineViewModel);
         binding.setHandlers(new TimelineHandler());

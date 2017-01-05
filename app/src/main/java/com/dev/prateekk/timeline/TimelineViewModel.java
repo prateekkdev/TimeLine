@@ -12,18 +12,18 @@ public class TimelineViewModel extends BaseObservable {
 
     private HashMap<String, SDBookingData> bookingHashMap;
 
-    private SDBookingData currentBookingDataItem;
+    private SDBookingData selectedBookingDataItem;
 
     public TimelineViewModel(HashMap<String, SDBookingData> bookingHashMap) {
         this.bookingHashMap = bookingHashMap;
     }
 
-    public SDBookingData getCurrentBookingDataItem() {
-        return currentBookingDataItem;
+    public SDBookingData getSelectedBookingDataItem() {
+        return selectedBookingDataItem;
     }
 
-    public void setCurrentBookingDataItem(SDBookingData currentBookingDataItem) {
-        this.currentBookingDataItem = currentBookingDataItem;
+    public void setSelectedBookingDataItem(SDBookingData selectedBookingDataItem) {
+        this.selectedBookingDataItem = selectedBookingDataItem;
     }
 
     public boolean getShowTimeline() {
@@ -41,8 +41,8 @@ public class TimelineViewModel extends BaseObservable {
         /**
          * Currently we aren't maintaining completed state in hash map, rather hash map is emptied after stop trip.
          */
-        if (currentBookingDataItem != null && (currentBookingDataItem.getStatus().equalsIgnoreCase("payment")
-                || currentBookingDataItem.getStatus().equalsIgnoreCase("completed"))) {
+        if (selectedBookingDataItem != null && (selectedBookingDataItem.getStatus().equalsIgnoreCase("payment")
+                || selectedBookingDataItem.getStatus().equalsIgnoreCase("completed"))) {
             return false;
         } else {
             return true;
@@ -50,7 +50,7 @@ public class TimelineViewModel extends BaseObservable {
     }
 
     public boolean getShowMobile() {
-        if (currentBookingDataItem != null && currentBookingDataItem.getStatus().equalsIgnoreCase("payment")) {
+        if (selectedBookingDataItem != null && selectedBookingDataItem.getStatus().equalsIgnoreCase("payment")) {
             return false;
         } else {
             return true;
@@ -58,14 +58,21 @@ public class TimelineViewModel extends BaseObservable {
     }
 
     public String getMobileNo() {
-        return currentBookingDataItem.getBookingResponse().customer_info.phone_no;
+        return selectedBookingDataItem.getBookingResponse().customer_info.phone_no;
     }
 
     public boolean getShowEndTrip() {
-        if (currentBookingDataItem != null && currentBookingDataItem.getStatus().equalsIgnoreCase("payment")) {
+        if (selectedBookingDataItem != null && selectedBookingDataItem.getStatus().equalsIgnoreCase("payment")) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public String getBookingId() {
+        if (selectedBookingDataItem != null) {
+            return selectedBookingDataItem.getKrn();
+        }
+        return "";
     }
 }

@@ -73,7 +73,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/line_divider"
                     android:gravity="center"
-                    android:onClick="@{handlers::onCancelTrip}"
+                    android:onClick="@{(v)->handlers.onCancelTrip(v, timeline.bookingId)}"
                     android:text="CANCEL BOOKING"
                     android:textColor="#000000"
                     android:visibility="@{timeline.showCancel ? View.VISIBLE : View.GONE}" />

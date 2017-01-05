@@ -14,16 +14,16 @@ public class TimelineHandler {
 
     }
 
-    public void onShowDropDown(View view) {
-        Toast.makeText(TimelineApp.getApp(), "Drop Down Click", Toast.LENGTH_LONG).show();
+    public void onShowDropDown(View view, String bookingId) {
+        Toast.makeText(TimelineApp.getApp(), "Drop Down Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
     }
 
-    public void onEndTrip(View view) {
-
+    public void onEndTrip(View view, String bookingId) {
+        Toast.makeText(TimelineApp.getApp(), "End Trip Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
     }
 
-    public void onCancelTrip(View view) {
-        Toast.makeText(TimelineApp.getApp(), "Cancel Click", Toast.LENGTH_LONG).show();
+    public void onCancelTrip(View view, String bookingId) {
+        Toast.makeText(TimelineApp.getApp(), "Cancel Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
     }
 
     public void onNoMoreBooking(View view) {

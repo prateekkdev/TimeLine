@@ -63,7 +63,7 @@
             android:layout_height="20dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:onClick="@{handlers::onShowDropDown}"
+            android:onClick="@{(v)->handlers.onShowDropDown(v, timelineitem.id)}"
             android:src="@mipmap/ic_chevron" />
     </RelativeLayout>
 
