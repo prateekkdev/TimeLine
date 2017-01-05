@@ -25,4 +25,8 @@ public class TimelineHandler {
     public void onCancelTrip(View view) {
         Toast.makeText(TimelineApp.getApp(), "Cancel Click", Toast.LENGTH_LONG).show();
     }
+
+    public void onNoMoreBooking(View view) {
+        Toast.makeText(TimelineApp.getApp(), "No More Bookings Click", Toast.LENGTH_LONG).show();
+    }
 }

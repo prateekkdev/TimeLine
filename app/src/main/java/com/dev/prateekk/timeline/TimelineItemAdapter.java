@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class TimelineItemAdapter {
 
     private int currentIndex;
-    private ArrayList<TimelineItemViewModel> timelineItemViewModelList = new ArrayList<>();
+    private ArrayList<TimelineMainItemViewModel> timelineMainItemViewModelList = new ArrayList<>();
     private HashMap<String, SDBookingData> bookingHashMap;
     private ArrayList<BookingPriority> priorityList;
 
@@ -23,17 +23,17 @@ public class TimelineItemAdapter {
         updateList();
     }
 
-    public ArrayList<TimelineItemViewModel> getTimelineItemViewModelList() {
-        return timelineItemViewModelList;
+    public ArrayList<TimelineMainItemViewModel> getTimelineMainItemViewModelList() {
+        return timelineMainItemViewModelList;
     }
 
     public int getCurrentIndex() {
         return currentIndex;
     }
 
-    public boolean isItemAlreadyAdded(String krn, ArrayList<TimelineItemViewModel> timelineItemViewModelList) {
+    public boolean isItemAlreadyAdded(String krn, ArrayList<TimelineMainItemViewModel> timelineMainItemViewModelList) {
 
-        for (TimelineItemViewModel item : timelineItemViewModelList) {
+        for (TimelineMainItemViewModel item : timelineMainItemViewModelList) {
             if (item.getId().equalsIgnoreCase(krn)) {
                 return true;
             }
@@ -42,16 +42,16 @@ public class TimelineItemAdapter {
         return false;
     }
 
-    public void updateNotCurrent(TimelineItemViewModel itemViewModel, String name) {
+    public void updateNotCurrent(TimelineMainItemViewModel itemViewModel, String name) {
         itemViewModel.setIsCurrent(false);
         itemViewModel.setTopTitle(name);
         itemViewModel.setWidth(dpToPx(200));
     }
 
-    public void updateCurrent(TimelineItemViewModel itemViewModel, String status) {
+    public void updateCurrent(TimelineMainItemViewModel itemViewModel, String status) {
 
         // This currentItem would be added later, so size would be its index
-        currentIndex = timelineItemViewModelList.size();
+        currentIndex = timelineMainItemViewModelList.size();
 
         itemViewModel.setIsCurrent(true);
 
@@ -75,7 +75,7 @@ public class TimelineItemAdapter {
         // This would also ensure for completed booking we have only one variant of item(not pickup and drop - as would give same info)
         boolean reachedCurrent = false;
         for (BookingPriority priority : priorityList) {
-            TimelineItemViewModel itemViewModel = new TimelineItemViewModel();
+            TimelineMainItemViewModel itemViewModel = new TimelineMainItemViewModel();
 
             SDBookingData bookingData = bookingHashMap.get(priority.krn);
 
@@ -104,7 +104,7 @@ public class TimelineItemAdapter {
             if (!reachedCurrent) {
 
                 // If this krn is already there before current action, means this is completed, so shouldn't be repeated as would not give any extra info.
-                if (isItemAlreadyAdded(bookingData.getKrn(), timelineItemViewModelList)) {
+                if (isItemAlreadyAdded(bookingData.getKrn(), timelineMainItemViewModelList)) {
                     continue;
                 }
 
@@ -127,7 +127,7 @@ public class TimelineItemAdapter {
 
             itemViewModel.setId(bookingData.getKrn());
 
-            timelineItemViewModelList.add(itemViewModel);
+            timelineMainItemViewModelList.add(itemViewModel);
         }
     }
 }

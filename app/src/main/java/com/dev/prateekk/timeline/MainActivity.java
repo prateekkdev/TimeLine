@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<BookingPriority> bookingPriorityArrayList = new ArrayList<>();
     HashMap<String, SDBookingData> bookingHashMap = new HashMap<>();
     TimelineItemAdapter timelineItemAdapter;
-    private ArrayList<TimelineItemViewModel> timeLineItemList = new ArrayList<>();
+    private ArrayList<TimelineMainItemViewModel> timeLineItemList = new ArrayList<>();
     private TimelineRecyclerView recyclerView;
     private TimelineRecyclerViewAdapter mAdapter;
 
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (timeLineItemList.size() > 0) {
-                    TimelineItemViewModel item = timeLineItemList.remove(0);
+                    TimelineMainItemViewModel item = timeLineItemList.remove(0);
                     mAdapter.notifyDataSetChanged();
                 }
             }

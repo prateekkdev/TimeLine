@@ -9,7 +9,7 @@ import android.widget.Toast;
  * Created by prateek.kesarwani on 15/12/16.
  */
 
-public class TimelineItemViewModel extends BaseObservable {
+public class TimelineMainItemViewModel extends BaseObservable {
 
     private String topTitle;
     private int topColor;
@@ -24,7 +24,7 @@ public class TimelineItemViewModel extends BaseObservable {
 
     private Drawable midImgDrawable;
 
-    public TimelineItemViewModel() {
+    public TimelineMainItemViewModel() {
     }
 
     public String getId() {
@@ -90,7 +90,7 @@ public class TimelineItemViewModel extends BaseObservable {
     /*
     @Override
     public boolean equals(Object obj) {
-        if (this.id.equalsIgnoreCase(((TimelineItemViewModel) obj).id)) {
+        if (this.id.equalsIgnoreCase(((TimelineMainItemViewModel) obj).id)) {
             return true;
         }
         return false;

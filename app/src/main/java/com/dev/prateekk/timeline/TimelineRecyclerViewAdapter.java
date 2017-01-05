@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.dev.prateekk.timeline.databinding.ItemTimelineLastBinding;
 import com.dev.prateekk.timeline.databinding.ItemTimelineMainBinding;
 
 import java.util.List;
@@ -23,14 +24,14 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
     private static final int VIEW_TYPE_MAIN = 2;
     private static final int VIEW_TYPE_LAST = 3;
 
-    private List<TimelineItemViewModel> timelineItemViewModelList;
+    private List<TimelineMainItemViewModel> timelineMainItemViewModelList;
 
     private TimelineItemAdapter timelineItemAdapter;
 
     public TimelineRecyclerViewAdapter(TimelineItemAdapter timelineItemAdapter) {
         this.timelineItemAdapter = timelineItemAdapter;
 
-        timelineItemViewModelList = timelineItemAdapter.getTimelineItemViewModelList();
+        timelineMainItemViewModelList = timelineItemAdapter.getTimelineMainItemViewModelList();
     }
 
     @BindingAdapter("android:layout_width")
@@ -79,23 +80,25 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
     @Override
     public void onBindViewHolder(BindingHolder holder, int position) {
 
-        if (getItemViewType(position) == VIEW_TYPE_MAIN) {
+        if (getItemViewType(position) == VIEW_TYPE_LAST) {
+            ((ItemTimelineLastBinding) holder.getBinding()).setHandlers(new TimelineHandler());
+        } else if (getItemViewType(position) == VIEW_TYPE_MAIN) {
 
             // As 0th position is for padding
             position = position - 1;
 
-            final TimelineItemViewModel item = timelineItemViewModelList.get(position);
+            final TimelineMainItemViewModel item = timelineMainItemViewModelList.get(position);
             holder.getBinding().setVariable(BR.timelineitem, item);
 
             ((ItemTimelineMainBinding) holder.getBinding()).setHandlers(new TimelineHandler());
-
-            holder.getBinding().executePendingBindings();
         }
+
+        holder.getBinding().executePendingBindings();
     }
 
     @Override
     public int getItemCount() {
-        return timelineItemViewModelList.size() + 2;
+        return timelineMainItemViewModelList.size() + 2;
     }
 
     public class BindingHolder extends RecyclerView.ViewHolder {

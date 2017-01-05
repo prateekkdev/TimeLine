@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <variable
+            name="handlers"
+            type="com.dev.prateekk.timeline.TimelineHandler" />
+    </data>
+
+
     <RelativeLayout
         android:layout_width="@dimen/last_item_width"
         android:layout_height="@dimen/timeline_height"
         android:background="@android:color/white"
+        android:onClick="@{handlers::onNoMoreBooking}"
         android:paddingRight="12dp">
 
         <TextView

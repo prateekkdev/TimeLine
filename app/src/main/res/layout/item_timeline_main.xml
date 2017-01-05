@@ -11,7 +11,7 @@
 
         <variable
             name="timelineitem"
-            type="com.dev.prateekk.timeline.TimelineItemViewModel" />
+            type="com.dev.prateekk.timeline.TimelineMainItemViewModel" />
     </data>
 
     <RelativeLayout
