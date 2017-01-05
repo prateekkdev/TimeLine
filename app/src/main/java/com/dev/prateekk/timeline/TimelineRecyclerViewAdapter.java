@@ -81,7 +81,11 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
     public void onBindViewHolder(BindingHolder holder, int position) {
 
         if (getItemViewType(position) == VIEW_TYPE_LAST) {
+
+            holder.getBinding().setVariable(BR.timelineitem, new TimelineLastItemViewModel());
+
             ((ItemTimelineLastBinding) holder.getBinding()).setHandlers(new TimelineHandler());
+
         } else if (getItemViewType(position) == VIEW_TYPE_MAIN) {
 
             // As 0th position is for padding
