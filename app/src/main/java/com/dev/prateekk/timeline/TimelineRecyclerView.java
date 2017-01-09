@@ -75,7 +75,7 @@ public class TimelineRecyclerView extends RecyclerView {
         display.getSize(size);
         itemWidth = getResources().getDimension(R.dimen.item_width);
         padding = (size.x - itemWidth) / 2;
-        extraItemWidth = getResources().getDimension(R.dimen.extra_item_width);
+        extraItemWidth = getResources().getDimension(R.dimen.first_item_width);
 
         totalPixelMovement = 0;
     }
