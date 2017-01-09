@@ -1,6 +1,8 @@
 package com.dev.prateekk.timeline;
 
+import android.content.Context;
 import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +39,7 @@ public class TimelineConverterUtil {
     private void updateNotCurrent(TimelineMainItemViewModel itemViewModel, String name) {
         itemViewModel.setIsCurrent(false);
         itemViewModel.setTopTitle(name);
-        itemViewModel.setWidth(dpToPx(200));
+        itemViewModel.setWidth(dpToPx(50));
     }
 
     private void updateCurrent(TimelineMainItemViewModel itemViewModel, String status) {
@@ -52,7 +54,18 @@ public class TimelineConverterUtil {
                 ? "WAIT FOR" : status.equalsIgnoreCase("invoice")
                 ? "BILLING FOR" : status.equalsIgnoreCase("payment")
                 ? "DROP" : "");
-        itemViewModel.setWidth(dpToPx(300));
+
+        // Get 80% of device width pixels
+        float widthToSet = getPixelsFromPercentScreen(80);
+
+        itemViewModel.setWidth(dpToPx(50));
+    }
+
+    private int getPixelsFromPercentScreen(int percent) {
+        WindowManager wm = (WindowManager) TimelineApp.getApp().getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics metrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(metrics);
+        return metrics.widthPixels * percent / 100;
     }
 
     private int dpToPx(int dp) {
