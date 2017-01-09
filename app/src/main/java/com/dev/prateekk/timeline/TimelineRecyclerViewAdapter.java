@@ -26,12 +26,12 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
 
     private List<TimelineMainItemViewModel> timelineMainItemViewModelList;
 
-    private TimelineItemAdapter timelineItemAdapter;
+    private TimelineConverterUtil timelineConverterUtil;
 
-    public TimelineRecyclerViewAdapter(TimelineItemAdapter timelineItemAdapter) {
-        this.timelineItemAdapter = timelineItemAdapter;
+    public TimelineRecyclerViewAdapter(TimelineConverterUtil timelineConverterUtil) {
+        this.timelineConverterUtil = timelineConverterUtil;
 
-        timelineMainItemViewModelList = timelineItemAdapter.getTimelineMainItemViewModelList();
+        timelineMainItemViewModelList = timelineConverterUtil.getTimelineMainItemViewModelList();
     }
 
     @BindingAdapter("android:layout_width")

@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<BookingPriority> bookingPriorityArrayList = new ArrayList<>();
     HashMap<String, SDBookingData> bookingHashMap = new HashMap<>();
-    TimelineItemAdapter timelineItemAdapter;
+    TimelineConverterUtil timelineConverterUtil;
     TimelineViewModel timelineViewModel;
     private ArrayList<TimelineMainItemViewModel> timeLineItemList = new ArrayList<>();
     private TimelineRecyclerView recyclerView;
@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        timelineItemAdapter = new TimelineItemAdapter(bookingHashMap, bookingPriorityArrayList);
-        mAdapter = new TimelineRecyclerViewAdapter(timelineItemAdapter);
+        timelineConverterUtil = new TimelineConverterUtil(bookingHashMap, bookingPriorityArrayList);
+        mAdapter = new TimelineRecyclerViewAdapter(timelineConverterUtil);
         recyclerView.setAdapter(mAdapter);
 
 
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         initTemp();
 
-        timelineItemAdapter.updateList();
+        // timelineConverterUtil.newUpdateData();
     }
 
     @Override
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                recyclerView.scrollListToPosition(recyclerView, MainActivity.this.timelineItemAdapter.getCurrentIndex());
+                recyclerView.scrollListToPosition(recyclerView, MainActivity.this.timelineConverterUtil.getCurrentIndex());
             }
         }, 2000);
     }
