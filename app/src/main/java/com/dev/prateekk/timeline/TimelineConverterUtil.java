@@ -39,7 +39,8 @@ public class TimelineConverterUtil {
     private void updateNotCurrent(TimelineMainItemViewModel itemViewModel, String name) {
         itemViewModel.setIsCurrent(false);
         itemViewModel.setTopTitle(name);
-        itemViewModel.setWidth(dpToPx(50));
+        // TODO - Width isn't dynamic currently - Get 80% of device width pixels
+        // itemViewModel.setWidth(dpToPx(50));
     }
 
     private void updateCurrent(TimelineMainItemViewModel itemViewModel, String status) {
