@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         timelineViewModel = new TimelineViewModel(bookingHashMap);
-        // timelineViewModel.setSelectedBookingDataItem(bookingHashMap.get("222"));
+        // timelineViewModel.setSelectedDropDown(bookingHashMap.get("222"));
 
         binding.setTimeline(timelineViewModel);
         binding.setHandlers(new TimelineHandler());
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 // TODO Think of a better way
                 // If drop down open, need to close
                 if (timelineViewModel.getDropDownSelected()) {
-                    timelineViewModel.setSelectedBookingDataItem(null);
+                    timelineViewModel.setSelectedDropDown(null);
                 }
             }
         });
@@ -167,9 +167,9 @@ public class MainActivity extends AppCompatActivity {
 
         // If drop down already selected, unselect it(null) or else select it(populate with bookingData)
         if (timelineViewModel.getDropDownSelected()) {
-            timelineViewModel.setSelectedBookingDataItem(null);
+            timelineViewModel.setSelectedDropDown(null);
         } else {
-            timelineViewModel.setSelectedBookingDataItem(bookingData);
+            timelineViewModel.setSelectedDropDown(bookingData);
         }
     }
 }

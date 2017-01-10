@@ -23,8 +23,17 @@ public class TimelineMainItemViewModel extends BaseObservable {
     private boolean isCurrent;
 
     private Drawable midImgDrawable;
+    private boolean isSelected;
 
     public TimelineMainItemViewModel() {
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
     public String getId() {
