@@ -55,10 +55,9 @@ public class TimelineConverterUtil {
                 ? "BILLING FOR" : status.equalsIgnoreCase("payment")
                 ? "DROP" : "");
 
-        // Get 80% of device width pixels
+        // TODO - Width isn't dynamic currently - Get 80% of device width pixels
         float widthToSet = getPixelsFromPercentScreen(80);
-
-        itemViewModel.setWidth(dpToPx(50));
+        // itemViewModel.setWidth(dpToPx(50));
     }
 
     private int getPixelsFromPercentScreen(int percent) {
