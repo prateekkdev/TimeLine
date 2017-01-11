@@ -31,12 +31,13 @@ public class TimelineViewModel extends BaseObservable implements TimelineContrac
         notifyChange();
     }
 
+    // TODO Check this
     public boolean getShowTimeline() {
-
-        if (bookingHashMap != null && bookingHashMap.size() > 0) {
-            return true;
-        }
-        return false;
+        return true;
+//        if (bookingHashMap != null && bookingHashMap.size() > 0) {
+//            return true;
+//        }
+//        return false;
     }
 
     public boolean getShowCancel() {
