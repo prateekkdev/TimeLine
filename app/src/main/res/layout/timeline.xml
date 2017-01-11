@@ -71,7 +71,7 @@
                     android:layout_marginBottom="4dp"
                     android:layout_marginTop="4dp"
                     android:background="@color/divider"
-                    android:visibility="@{timelineViewModel.showMobile &amp;&amp; timeline.showCancel ? View.VISIBLE : View.GONE}" />
+                    android:visibility="@{timelineViewModel.showMobile &amp;&amp; timelineViewModel.showCancel ? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     android:id="@+id/txt_item_cancel"
@@ -80,7 +80,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/line_divider"
                     android:gravity="center"
-                    android:onClick="@{(v)->handlers.onCancelTrip(v, timeline.bookingId)}"
+                    android:onClick="@{(v)->handlers.onCancelTrip(v, timelineViewModel.bookingId)}"
                     android:text="CANCEL BOOKING"
                     android:textColor="@color/red"
                     android:visibility="@{timelineViewModel.showCancel ? View.VISIBLE : View.GONE}" />

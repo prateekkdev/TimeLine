@@ -130,10 +130,10 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
         SDBookingData bookingData = bookingHashMap.get(bookingId);
 
         // If drop down already selected, unselect it(null) or else select it(populate with bookingData)
-        if (timelineBinding.getTimeline().getDropDownSelected()) {
-            timelineBinding.getTimeline().setSelectedDropDown(null);
+        if (timelineBinding.getTimelineViewModel().getDropDownSelected()) {
+            timelineBinding.getTimelineViewModel().setSelectedDropDown(null);
         } else {
-            timelineBinding.getTimeline().setSelectedDropDown(bookingData);
+            timelineBinding.getTimelineViewModel().setSelectedDropDown(bookingData);
         }
     }
 }
