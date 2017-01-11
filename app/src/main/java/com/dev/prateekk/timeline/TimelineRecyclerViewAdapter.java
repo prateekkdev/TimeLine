@@ -52,6 +52,12 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
         textView.setText(pname);
     }
 
+    public void updateData(HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> bookingPriorityArrayList) {
+        this.bookingHashMap = bookingHashMap;
+        this.priorityList = bookingPriorityArrayList;
+        updateList();
+    }
+
     @Override
     public int getItemViewType(int position) {
         if (position == 0) {

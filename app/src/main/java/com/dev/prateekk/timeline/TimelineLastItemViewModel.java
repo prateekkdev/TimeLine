@@ -11,7 +11,7 @@ public class TimelineLastItemViewModel extends BaseObservable {
 
     public boolean getEnabled() {
 
-        // Need some mechanism to check for enable/disable NoMoreBookings
+        // Need some mechanism to check for enable/disable of NoMoreBookings
         return true;
     }
 }

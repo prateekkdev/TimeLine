@@ -111,6 +111,6 @@ public class TimelineRecyclerView extends RecyclerView {
 
     @Override
     public TimelineRecyclerViewAdapter getAdapter() {
-        return this.getAdapter();
+        return (TimelineRecyclerViewAdapter) super.getAdapter();
     }
 }

@@ -2,7 +2,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.dev.prateekk.timeline.Timeline
+    <fragment
+        android:name="com.dev.prateekk.timeline.TimelineFragment"
+        android:id="@+id/timeline_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
