@@ -35,7 +35,6 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
     private HashMap<String, SDBookingData> bookingHashMap;
     private ArrayList<BookingPriority> priorityList;
 
-
     public TimelineRecyclerViewAdapter(HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> priorityList) {
         this.bookingHashMap = bookingHashMap;
         this.priorityList = priorityList;

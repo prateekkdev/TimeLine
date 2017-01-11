@@ -54,7 +54,7 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
 
         timelineBinding = TimelineBinding.bind(view);
 
-        timelineBinding.setTimeline(new TimelineViewModel(this, bookingHashMap));
+        timelineBinding.setTimelineViewModel(new TimelineViewModel(this, bookingHashMap));
 
         mAdapter = new TimelineRecyclerViewAdapter(bookingHashMap, bookingPriorityArrayList);
         timelineBinding.timelineRecyclerView.setAdapter(mAdapter);
@@ -68,8 +68,8 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
 
                 // TODO Think of a better way
                 // If drop down open, need to close
-                if (timelineBinding.getTimeline().getDropDownSelected()) {
-                    timelineBinding.getTimeline().setSelectedDropDown(null);
+                if (timelineBinding.getTimelineViewModel().getDropDownSelected()) {
+                    timelineBinding.getTimelineViewModel().setSelectedDropDown(null);
                 }
             }
         });

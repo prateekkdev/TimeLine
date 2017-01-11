@@ -13,12 +13,12 @@ import java.util.HashMap;
 
 public class TimelineViewModel extends BaseObservable implements TimelineContract.ViewModel {
 
-    TimelineContract.View timelineView;
+    private TimelineContract.View timelineView;
     private HashMap<String, SDBookingData> bookingHashMap;
     private SDBookingData selectedDropDown;
 
     public TimelineViewModel(TimelineContract.View view, HashMap<String, SDBookingData> bookingHashMap) {
-        this.timelineView = timelineView;
+        this.timelineView = view;
         this.bookingHashMap = bookingHashMap;
     }
 
