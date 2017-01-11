@@ -3,6 +3,9 @@ package com.dev.prateekk.timeline;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.dev.prateekk.timeline.redundent.BookingPriority;
+import com.dev.prateekk.timeline.redundent.SDBookingData;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

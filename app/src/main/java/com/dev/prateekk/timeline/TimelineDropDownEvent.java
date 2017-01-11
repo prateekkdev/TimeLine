@@ -1,5 +1,7 @@
 package com.dev.prateekk.timeline;
 
+import com.dev.prateekk.timeline.redundent.TimelineEvent;
+
 /**
  * Created by prateek.kesarwani on 05/01/17.
  */

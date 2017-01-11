@@ -1,7 +1,9 @@
-package com.dev.prateekk.timeline;
+package com.dev.prateekk.timeline.redundent;
 
 
 import android.text.TextUtils;
+
+import com.dev.prateekk.timeline.BuildConfig;
 
 import java.io.Serializable;
 import java.util.Arrays;

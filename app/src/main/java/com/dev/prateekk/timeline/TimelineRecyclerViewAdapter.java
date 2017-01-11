@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.dev.prateekk.timeline.databinding.ItemTimelineLastBinding;
 import com.dev.prateekk.timeline.databinding.ItemTimelineMainBinding;
+import com.dev.prateekk.timeline.redundent.BookingPriority;
+import com.dev.prateekk.timeline.redundent.SDBookingData;
 
 import java.util.ArrayList;
 import java.util.HashMap;

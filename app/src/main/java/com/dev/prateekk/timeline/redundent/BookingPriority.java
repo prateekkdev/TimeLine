@@ -1,4 +1,4 @@
-package com.dev.prateekk.timeline;
+package com.dev.prateekk.timeline.redundent;
 
 public class BookingPriority {
     public String krn;

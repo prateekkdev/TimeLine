@@ -1,4 +1,4 @@
-package com.dev.prateekk.timeline;
+package com.dev.prateekk.timeline.redundent;
 
 /**
  * Created by prateek.kesarwani on 05/01/17.

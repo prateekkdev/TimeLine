@@ -1,7 +1,6 @@
-package com.dev.prateekk.timeline;
+package com.dev.prateekk.timeline.redundent;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 enum Order {
     PICKUP,

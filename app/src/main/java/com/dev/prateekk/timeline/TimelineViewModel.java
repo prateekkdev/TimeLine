@@ -3,6 +3,8 @@ package com.dev.prateekk.timeline;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
+import com.dev.prateekk.timeline.redundent.SDBookingData;
+
 import java.util.HashMap;
 
 /**
