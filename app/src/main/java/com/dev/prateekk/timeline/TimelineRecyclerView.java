@@ -108,4 +108,9 @@ public class TimelineRecyclerView extends RecyclerView {
             recyclerView.smoothScrollBy((int) pixelToMoveBack, 0);
         }
     }
+
+    @Override
+    public TimelineRecyclerViewAdapter getAdapter() {
+        return this.getAdapter();
+    }
 }

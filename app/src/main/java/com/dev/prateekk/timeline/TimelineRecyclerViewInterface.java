@@ -5,7 +5,5 @@ package com.dev.prateekk.timeline;
  */
 
 public interface TimelineRecyclerViewInterface {
-
     void onScrolled();
-
 }

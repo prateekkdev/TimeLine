@@ -9,13 +9,14 @@ import java.util.HashMap;
  * Created by prateek.kesarwani on 04/01/17.
  */
 
-public class TimelineViewModel extends BaseObservable {
+public class TimelineViewModel extends BaseObservable implements TimelineContract.ViewModel {
 
+    TimelineContract.View timelineView;
     private HashMap<String, SDBookingData> bookingHashMap;
-
     private SDBookingData selectedDropDown;
 
-    public TimelineViewModel(HashMap<String, SDBookingData> bookingHashMap) {
+    public TimelineViewModel(TimelineContract.View view, HashMap<String, SDBookingData> bookingHashMap) {
+        this.timelineView = timelineView;
         this.bookingHashMap = bookingHashMap;
     }
 
@@ -62,7 +63,6 @@ public class TimelineViewModel extends BaseObservable {
             return selectedDropDown.getBookingResponse().customer_info.phone_no;
         }
         return "";
-
     }
 
     public boolean getShowEndTrip() {
