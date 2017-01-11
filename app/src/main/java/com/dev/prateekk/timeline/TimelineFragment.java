@@ -54,6 +54,11 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
 
         timelineBinding.setTimeline(new TimelineViewModel(this, bookingHashMap));
 
+        mAdapter = new TimelineRecyclerViewAdapter(bookingHashMap, bookingPriorityArrayList);
+        timelineBinding.timelineRecyclerView.setAdapter(mAdapter);
+        timelineBinding.timelineRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        timelineBinding.timelineRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
         // TODO Could stuff like this be done using RxJava
         timelineBinding.timelineRecyclerView.setRecyclerViewInterface(new TimelineRecyclerViewInterface() {
             @Override
@@ -71,14 +76,9 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
     }
 
     public void updateData(HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> bookingPriorityArrayList) {
-
-        mAdapter = new TimelineRecyclerViewAdapter(bookingHashMap, bookingPriorityArrayList);
-        timelineBinding.timelineRecyclerView.setAdapter(mAdapter);
-        timelineBinding.timelineRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        timelineBinding.timelineRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mAdapter.updateData(bookingHashMap, bookingPriorityArrayList);
         // timelineBinding.timelineRecyclerView.invalidate();
-        timelineBinding.timelineRecyclerView.getAdapter().notifyDataSetChanged();
-        // mAdapter.updateData(bookingHashMap, bookingPriorityArrayList);
+        // timelineBinding.timelineRecyclerView.getAdapter().notifyDataSetChanged();
         // timelineBinding.timelineRecyclerView.invalidate();
         // mAdapter.notifyDataSetChanged();
     }

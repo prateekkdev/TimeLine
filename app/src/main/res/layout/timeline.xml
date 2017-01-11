@@ -21,7 +21,7 @@
         <com.dev.prateekk.timeline.TimelineRecyclerView
             android:id="@+id/timeline_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="68dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:background="@drawable/line"
             android:visibility="@{timeline.showTimeline ? View.VISIBLE : View.GONE}" />
