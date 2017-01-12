@@ -10,6 +10,7 @@ public class TimelineItemViewModel extends BaseObservable implements TimelineCon
 
     protected TimelineContract.View timelineView;
     private int itemPosition;
+    private boolean isSelected;
 
     public TimelineItemViewModel(TimelineContract.View timelineView, int itemPosition) {
         this.timelineView = timelineView;
@@ -29,4 +30,11 @@ public class TimelineItemViewModel extends BaseObservable implements TimelineCon
         this.itemPosition = itemPosition;
     }
 
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 }

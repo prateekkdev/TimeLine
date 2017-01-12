@@ -2,7 +2,6 @@ package com.dev.prateekk.timeline;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.Toast;
 
 /**
  * Created by prateek.kesarwani on 15/12/16.
@@ -22,18 +21,9 @@ public class TimelineMainItemViewModel extends TimelineItemViewModel {
     private boolean isCurrent;
 
     private Drawable midImgDrawable;
-    private boolean isSelected;
 
     public TimelineMainItemViewModel(TimelineContract.View timelineView, int itemPostion) {
         super(timelineView, itemPostion);
-    }
-
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        isSelected = selected;
     }
 
     public String getId() {
@@ -93,10 +83,17 @@ public class TimelineMainItemViewModel extends TimelineItemViewModel {
     }
 
     public void onShowDropDown(View view, String bookingId) {
-        Toast.makeText(TimelineApp.getApp(), "Drop Down Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
+
+        // Drop down would be shown only if selected, else item would be selected.
+
+        // TODO Need to enforce this logic for all actions
+        // So, every action should only be available when this item is selected,
+        // Else this action won't be taken and this item is made selected(And scrolled thereafter).
 
         if (isSelected()) {
             timelineView.onShowDropDown(bookingId);
+        } else {
+            timelineView.onItemClick(this.getItemPosition());
         }
     }
 
