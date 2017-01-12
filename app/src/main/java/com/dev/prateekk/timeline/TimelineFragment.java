@@ -78,6 +78,8 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
     }
 
     public void updateData(HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> bookingPriorityArrayList) {
+        this.bookingHashMap = bookingHashMap;
+        this.bookingPriorityArrayList = bookingPriorityArrayList;
         mAdapter.updateData(bookingHashMap, bookingPriorityArrayList);
         // timelineBinding.timelineRecyclerView.invalidate();
         // timelineBinding.timelineRecyclerView.getAdapter().notifyDataSetChanged();
