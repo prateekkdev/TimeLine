@@ -16,12 +16,6 @@ public class TimelineHandler {
 
     }
 
-    public void onShowDropDown(View view, String bookingId) {
-        Toast.makeText(TimelineApp.getApp(), "Drop Down Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
-
-        EventBus.getDefault().post(new TimelineDropDownEvent(bookingId));
-    }
-
     public void onEndTrip(View view, String bookingId) {
         Toast.makeText(TimelineApp.getApp(), "End Trip Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
 

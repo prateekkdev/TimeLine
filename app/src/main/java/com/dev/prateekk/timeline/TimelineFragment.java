@@ -56,7 +56,7 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
 
         timelineBinding.setTimelineViewModel(new TimelineViewModel(this, bookingHashMap));
 
-        mAdapter = new TimelineRecyclerViewAdapter(bookingHashMap, bookingPriorityArrayList);
+        mAdapter = new TimelineRecyclerViewAdapter(this, bookingHashMap, bookingPriorityArrayList);
         timelineBinding.timelineRecyclerView.setAdapter(mAdapter);
         timelineBinding.timelineRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
         timelineBinding.timelineRecyclerView.setItemAnimator(new DefaultItemAnimator());

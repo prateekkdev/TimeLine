@@ -35,9 +35,12 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
     private HashMap<String, SDBookingData> bookingHashMap;
     private ArrayList<BookingPriority> priorityList;
 
-    public TimelineRecyclerViewAdapter(HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> priorityList) {
+    private TimelineContract.View view;
+
+    public TimelineRecyclerViewAdapter(TimelineContract.View view, HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> priorityList) {
         this.bookingHashMap = bookingHashMap;
         this.priorityList = priorityList;
+        this.view = view;
         updateList();
     }
 
@@ -167,7 +170,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
     public void newUpdateData() {
 
         for (BookingPriority priority : priorityList) {
-            TimelineMainItemViewModel itemViewModel = new TimelineMainItemViewModel();
+            TimelineMainItemViewModel itemViewModel = new TimelineMainItemViewModel(view);
 
             SDBookingData bookingData = bookingHashMap.get(priority.krn);
             String status = bookingData.getStatus();
@@ -207,7 +210,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
         // This would also ensure for completed booking we have only one variant of item(not pickup and drop - as would give same info)
         boolean reachedCurrent = false;
         for (BookingPriority priority : priorityList) {
-            TimelineMainItemViewModel itemViewModel = new TimelineMainItemViewModel();
+            TimelineMainItemViewModel itemViewModel = new TimelineMainItemViewModel(view);
 
             SDBookingData bookingData = bookingHashMap.get(priority.krn);
 

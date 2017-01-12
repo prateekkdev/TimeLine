@@ -9,7 +9,9 @@ import android.widget.Toast;
  * Created by prateek.kesarwani on 15/12/16.
  */
 
-public class TimelineMainItemViewModel extends BaseObservable {
+public class TimelineMainItemViewModel extends BaseObservable implements TimelineContract.ViewModel {
+
+    private TimelineContract.View timelineView;
 
     private String topTitle;
     private int topColor;
@@ -25,7 +27,8 @@ public class TimelineMainItemViewModel extends BaseObservable {
     private Drawable midImgDrawable;
     private boolean isSelected;
 
-    public TimelineMainItemViewModel() {
+    public TimelineMainItemViewModel(TimelineContract.View view) {
+        this.timelineView = view;
     }
 
     public boolean isSelected() {
@@ -95,6 +98,14 @@ public class TimelineMainItemViewModel extends BaseObservable {
     public void setIsCurrent(boolean isCurrent) {
         this.isCurrent = isCurrent;
     }
+
+    public void onShowDropDown(View view, String bookingId) {
+        Toast.makeText(TimelineApp.getApp(), "Drop Down Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
+
+        timelineView.onShowDropDown(bookingId);
+    }
+
+
 
     /*
     @Override
