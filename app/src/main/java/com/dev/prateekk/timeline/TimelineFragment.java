@@ -66,6 +66,9 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
             @Override
             public void onScrolled(int index) {
 
+                // TODO This would render adapter non-testable(Even updateList - Need to used interfacing here as well)
+                mAdapter.updateSelected(index);
+
                 // TODO Think of a better way
                 // If drop down open, need to close
                 if (timelineBinding.getTimelineViewModel().getDropDownSelected()) {
@@ -90,7 +93,7 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
     @Override
     public void onResume() {
         super.onResume();
-        doInitialTransitionOfFullLength();
+        // doInitialTransitionOfFullLength();
     }
 
     /*

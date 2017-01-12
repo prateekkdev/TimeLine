@@ -200,6 +200,28 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
     }
     */
 
+    /**
+     * Complexity of O(n) - Need to optimize, shouldn't be more than O(1)
+     *
+     * @param position
+     */
+    public void updateSelected(int position) {
+
+        for (TimelineMainItemViewModel viewModel : timelineMainItemViewModelList) {
+            // Deselect everything
+            viewModel.setSelected(false);
+        }
+
+        if (position >= timelineMainItemViewModelList.size()) {
+            // TODO Meaning we have selected No More Bookings
+        } else {
+            TimelineMainItemViewModel viewModel = timelineMainItemViewModelList.get(position);
+            viewModel.setSelected(true);
+        }
+
+        notifyItemChanged(position);
+    }
+
     public void updateList() {
 
         // TODO Clear list before updating.
