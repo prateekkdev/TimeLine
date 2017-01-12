@@ -143,7 +143,7 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
     }
 
     @Override
-    public void onItemClick(int itemPostion) {
+    public void onItemSelected(int itemPostion) {
         timelineBinding.timelineRecyclerView.scrollListToPosition(timelineBinding.timelineRecyclerView, itemPostion);
     }
 }

@@ -23,7 +23,7 @@ public class TimelineLastItemViewModel extends TimelineItemViewModel {
         if (isSelected()) {
             Toast.makeText(TimelineApp.getApp(), "No More Bookings Click", Toast.LENGTH_LONG).show();
         } else {
-            timelineView.onItemClick(this.getItemPosition());
+            onItemSelected(view);
         }
 
         // TODO Directly make calls from here or NOT

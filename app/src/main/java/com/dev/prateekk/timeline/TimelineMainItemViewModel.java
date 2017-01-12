@@ -93,7 +93,8 @@ public class TimelineMainItemViewModel extends TimelineItemViewModel {
         if (isSelected()) {
             timelineView.onShowDropDown(bookingId);
         } else {
-            timelineView.onItemClick(this.getItemPosition());
+            onItemSelected(view);
+            // timelineView.onItemSelected(this.getItemPosition());
         }
     }
 

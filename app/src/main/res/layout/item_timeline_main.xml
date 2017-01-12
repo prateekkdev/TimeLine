@@ -14,7 +14,7 @@
         android:layout_width="@dimen/item_width"
         android:layout_height="@dimen/timeline_height"
         android:background="@android:color/transparent"
-        android:onClick="@{(v)->timelineitem.onItemClick(v, timelineitem.itemPosition)}"
+        android:onClick="@{(v)->timelineitem.onItemSelected(v)}"
         android:paddingBottom="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"

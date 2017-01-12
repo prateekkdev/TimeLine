@@ -10,11 +10,11 @@ public interface TimelineContract {
         void onShowDropDown(String bookingId);
 
         // This would be needed to scroll recycler view to that location.
-        void onItemClick(int itemPosition);
+        void onItemSelected(int itemPosition);
     }
 
     interface ViewModel {
-        // void onItemClick(android.view.View view, int itemPosition);
+        // void onItemSelected(android.view.View view, int itemPosition);
     }
 
 }

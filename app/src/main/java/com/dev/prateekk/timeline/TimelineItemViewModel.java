@@ -17,9 +17,8 @@ public class TimelineItemViewModel extends BaseObservable implements TimelineCon
         this.itemPosition = itemPosition;
     }
 
-    public void onItemClick(android.view.View view, int itemPosition) {
-        // Toast.makeText(TimelineApp.getApp(), "Scrolled - Id: " + bookingId, Toast.LENGTH_LONG).show();
-        timelineView.onItemClick(itemPosition);
+    public void onItemSelected(android.view.View view) {
+        timelineView.onItemSelected(itemPosition);
     }
 
     public int getItemPosition() {
