@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.dev.prateekk.timeline.databinding.ItemTimelineLastBinding;
-import com.dev.prateekk.timeline.databinding.ItemTimelineMainBinding;
 import com.dev.prateekk.timeline.redundent.BookingPriority;
 import com.dev.prateekk.timeline.redundent.SDBookingData;
 
@@ -98,7 +96,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
 
             holder.getBinding().setVariable(BR.timelineitem, new TimelineLastItemViewModel());
 
-            ((ItemTimelineLastBinding) holder.getBinding()).setHandlers(new TimelineHandler());
+            // ((ItemTimelineLastBinding) holder.getBinding()).setHandlers(new TimelineHandler());
 
         } else if (getItemViewType(position) == VIEW_TYPE_MAIN) {
 
@@ -108,7 +106,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
             final TimelineMainItemViewModel item = timelineMainItemViewModelList.get(position);
             holder.getBinding().setVariable(BR.timelineitem, item);
 
-            ((ItemTimelineMainBinding) holder.getBinding()).setHandlers(new TimelineHandler());
+            // ((ItemTimelineMainBinding) holder.getBinding()).setHandlers(new TimelineHandler());
         }
 
         holder.getBinding().executePendingBindings();

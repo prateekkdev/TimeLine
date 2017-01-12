@@ -1,4 +1,4 @@
-package com.dev.prateekk.timeline;
+package com.dev.prateekk.timeline.redundent;
 
 import com.dev.prateekk.timeline.redundent.TimelineEvent;
 

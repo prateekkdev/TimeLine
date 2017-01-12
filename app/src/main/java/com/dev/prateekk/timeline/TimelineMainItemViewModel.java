@@ -102,10 +102,22 @@ public class TimelineMainItemViewModel extends BaseObservable implements Timelin
     public void onShowDropDown(View view, String bookingId) {
         Toast.makeText(TimelineApp.getApp(), "Drop Down Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
 
-        timelineView.onShowDropDown(bookingId);
+        if (isSelected()) {
+            timelineView.onShowDropDown(bookingId);
+        }
     }
 
+    public void onEndTrip(View view, String bookingId) {
+        Toast.makeText(TimelineApp.getApp(), "End Trip Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
 
+        // Directly make calls from here
+    }
+
+    public void onCancelTrip(View view, String bookingId) {
+        Toast.makeText(TimelineApp.getApp(), "Cancel Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
+
+        // Directly make calls from here
+    }
 
     /*
     @Override
