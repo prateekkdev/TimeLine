@@ -33,12 +33,12 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
     private HashMap<String, SDBookingData> bookingHashMap;
     private ArrayList<BookingPriority> priorityList;
 
-    private TimelineContract.View view;
+    private TimelineContract.View timelineView;
 
-    public TimelineRecyclerViewAdapter(TimelineContract.View view, HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> priorityList) {
+    public TimelineRecyclerViewAdapter(TimelineContract.View timelineView, HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> priorityList) {
         this.bookingHashMap = bookingHashMap;
         this.priorityList = priorityList;
-        this.view = view;
+        this.timelineView = timelineView;
         updateList();
     }
 
@@ -165,10 +165,11 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
         return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 
+    /*
     public void newUpdateData() {
 
         for (BookingPriority priority : priorityList) {
-            TimelineMainItemViewModel itemViewModel = new TimelineMainItemViewModel(view);
+            TimelineMainItemViewModel itemViewModel = new TimelineMainItemViewModel(timelineView);
 
             SDBookingData bookingData = bookingHashMap.get(priority.krn);
             String status = bookingData.getStatus();
@@ -197,6 +198,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
 
         }
     }
+    */
 
     public void updateList() {
 
@@ -207,8 +209,9 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
         // This flag would be used to grey out all data upto current action
         // This would also ensure for completed booking we have only one variant of item(not pickup and drop - as would give same info)
         boolean reachedCurrent = false;
+        int itemPosition = 0;
         for (BookingPriority priority : priorityList) {
-            TimelineMainItemViewModel itemViewModel = new TimelineMainItemViewModel(view);
+            TimelineMainItemViewModel itemViewModel = new TimelineMainItemViewModel(timelineView);
 
             SDBookingData bookingData = bookingHashMap.get(priority.krn);
 
@@ -260,6 +263,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
 
             itemViewModel.setId(bookingData.getKrn());
 
+            itemViewModel.setItemPosition(itemPosition++);
             timelineMainItemViewModelList.add(itemViewModel);
         }
     }

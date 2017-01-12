@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 public class TimelineMainItemViewModel extends BaseObservable implements TimelineContract.ViewModel {
 
+    private int itemPosition;
     private TimelineContract.View timelineView;
 
     private String topTitle;
@@ -29,6 +30,14 @@ public class TimelineMainItemViewModel extends BaseObservable implements Timelin
 
     public TimelineMainItemViewModel(TimelineContract.View view) {
         this.timelineView = view;
+    }
+
+    public int getItemPosition() {
+        return itemPosition;
+    }
+
+    public void setItemPosition(int itemPosition) {
+        this.itemPosition = itemPosition;
     }
 
     public boolean isSelected() {
@@ -107,9 +116,9 @@ public class TimelineMainItemViewModel extends BaseObservable implements Timelin
         }
     }
 
-    public void onItemClick(View view, String bookingId) {
-        Toast.makeText(TimelineApp.getApp(), "Scrolled - Id: " + bookingId, Toast.LENGTH_LONG).show();
-        timelineView.onItemClick(bookingId);
+    public void onItemClick(View view, int itemPosition) {
+        // Toast.makeText(TimelineApp.getApp(), "Scrolled - Id: " + bookingId, Toast.LENGTH_LONG).show();
+        timelineView.onItemClick(itemPosition);
     }
 
     /*

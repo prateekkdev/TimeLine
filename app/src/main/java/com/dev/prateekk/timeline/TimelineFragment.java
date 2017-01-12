@@ -140,9 +140,7 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
     }
 
     @Override
-    public void onItemClick(String bookingId) {
-
-        // Currently Hardcoded to
-        timelineBinding.timelineRecyclerView.scrollListToPosition(timelineBinding.timelineRecyclerView, 3);
+    public void onItemClick(int itemPostion) {
+        timelineBinding.timelineRecyclerView.scrollListToPosition(timelineBinding.timelineRecyclerView, itemPostion);
     }
 }
