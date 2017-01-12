@@ -1,4 +1,4 @@
-package com.dev.prateekk.timeline;
+package com.dev.prateekk.timeline.redundent;
 
 import android.app.Application;
 import android.content.Context;

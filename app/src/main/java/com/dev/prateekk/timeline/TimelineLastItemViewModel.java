@@ -3,6 +3,8 @@ package com.dev.prateekk.timeline;
 import android.view.View;
 import android.widget.Toast;
 
+import com.dev.prateekk.timeline.redundent.TimelineApp;
+
 /**
  * Created by prateek.kesarwani on 05/01/17.
  */

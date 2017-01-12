@@ -1,8 +1,10 @@
-package com.dev.prateekk.timeline;
+package com.dev.prateekk.timeline.redundent;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.dev.prateekk.timeline.R;
+import com.dev.prateekk.timeline.TimelineFragment;
 import com.dev.prateekk.timeline.redundent.BookingPriority;
 import com.dev.prateekk.timeline.redundent.SDBookingData;
 
