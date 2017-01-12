@@ -138,4 +138,11 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
             timelineBinding.getTimelineViewModel().setSelectedDropDown(bookingData);
         }
     }
+
+    @Override
+    public void onItemClick(String bookingId) {
+
+        // Currently Hardcoded to
+        timelineBinding.timelineRecyclerView.scrollListToPosition(timelineBinding.timelineRecyclerView, 3);
+    }
 }

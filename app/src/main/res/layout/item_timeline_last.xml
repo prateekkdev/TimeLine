@@ -9,9 +9,6 @@
             name="timelineitem"
             type="com.dev.prateekk.timeline.TimelineLastItemViewModel" />
 
-        <variable
-            name="handlers"
-            type="com.dev.prateekk.timeline.TimelineHandler" />
     </data>
 
     <RelativeLayout
@@ -27,7 +24,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:onClick="@{handlers::onNoMoreBooking}"
+            android:onClick="@{timelineitem::onNoMoreBooking}"
             android:paddingLeft="12dp"
             android:text="NO MORE BOOKINGS"
             android:textColor="#4a95f1"

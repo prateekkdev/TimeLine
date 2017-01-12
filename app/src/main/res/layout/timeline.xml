@@ -5,10 +5,6 @@
         <import type="android.view.View" />
 
         <variable
-            name="handlers"
-            type="com.dev.prateekk.timeline.TimelineHandler" />
-
-        <variable
             name="timelineViewModel"
             type="com.dev.prateekk.timeline.TimelineViewModel" />
     </data>
@@ -80,7 +76,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/line_divider"
                     android:gravity="center"
-                    android:onClick="@{(v)->handlers.onCancelTrip(v, timelineViewModel.bookingId)}"
+                    android:onClick="@{(v)->timelineViewModel.onCancelTrip(v, timelineViewModel.bookingId)}"
                     android:text="CANCEL BOOKING"
                     android:textColor="@color/red"
                     android:visibility="@{timelineViewModel.showCancel ? View.VISIBLE : View.GONE}" />

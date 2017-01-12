@@ -107,16 +107,9 @@ public class TimelineMainItemViewModel extends BaseObservable implements Timelin
         }
     }
 
-    public void onEndTrip(View view, String bookingId) {
-        Toast.makeText(TimelineApp.getApp(), "End Trip Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
-
-        // Directly make calls from here
-    }
-
-    public void onCancelTrip(View view, String bookingId) {
-        Toast.makeText(TimelineApp.getApp(), "Cancel Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
-
-        // Directly make calls from here
+    public void onItemClick(View view, String bookingId) {
+        Toast.makeText(TimelineApp.getApp(), "Scrolled - Id: " + bookingId, Toast.LENGTH_LONG).show();
+        timelineView.onItemClick(bookingId);
     }
 
     /*

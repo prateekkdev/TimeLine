@@ -2,6 +2,8 @@ package com.dev.prateekk.timeline;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.view.View;
+import android.widget.Toast;
 
 import com.dev.prateekk.timeline.redundent.SDBookingData;
 
@@ -85,5 +87,17 @@ public class TimelineViewModel extends BaseObservable implements TimelineContrac
 
     public boolean getDropDownSelected() {
         return selectedDropDown == null ? false : true;
+    }
+
+    public void onEndTrip(View view, String bookingId) {
+        Toast.makeText(TimelineApp.getApp(), "End Trip Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
+
+        // Directly make calls from here
+    }
+
+    public void onCancelTrip(View view, String bookingId) {
+        Toast.makeText(TimelineApp.getApp(), "Cancel Click - Id: " + bookingId, Toast.LENGTH_LONG).show();
+
+        // Directly make calls from here
     }
 }
