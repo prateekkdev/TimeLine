@@ -15,6 +15,7 @@
         android:layout_width="@dimen/last_item_width"
         android:layout_height="@dimen/timeline_height"
         android:background="@android:color/white"
+        android:onClick="@{(v)->timelineitem.onItemClick(v, timelineitem.itemPosition)}"
         android:paddingRight="12dp">
 
         <TextView

@@ -13,6 +13,7 @@ import java.util.HashMap;
  * Created by prateek.kesarwani on 04/01/17.
  */
 
+// TODO Use of contract here(Same is used in TimelineItemViewModel - There should be separation of concerns
 public class TimelineViewModel extends BaseObservable implements TimelineContract.ViewModel {
 
     private TimelineContract.View timelineView;

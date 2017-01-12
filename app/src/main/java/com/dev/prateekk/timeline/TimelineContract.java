@@ -14,7 +14,7 @@ public interface TimelineContract {
     }
 
     interface ViewModel {
-
+        // void onItemClick(android.view.View view, int itemPosition);
     }
 
 }

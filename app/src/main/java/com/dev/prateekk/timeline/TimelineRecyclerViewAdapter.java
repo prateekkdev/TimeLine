@@ -33,6 +33,9 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
     private HashMap<String, SDBookingData> bookingHashMap;
     private ArrayList<BookingPriority> priorityList;
 
+    // This would be always be 1, so list not needed.
+    private TimelineLastItemViewModel timelineLastItemViewModel;
+
     private TimelineContract.View timelineView;
 
     public TimelineRecyclerViewAdapter(TimelineContract.View timelineView, HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> priorityList) {
@@ -94,7 +97,8 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
 
         if (getItemViewType(position) == VIEW_TYPE_LAST) {
 
-            holder.getBinding().setVariable(BR.timelineitem, new TimelineLastItemViewModel());
+            timelineLastItemViewModel = new TimelineLastItemViewModel(timelineView, position);
+            holder.getBinding().setVariable(BR.timelineitem, timelineLastItemViewModel);
 
             // ((ItemTimelineLastBinding) holder.getBinding()).setHandlers(new TimelineHandler());
 
@@ -233,7 +237,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
         boolean reachedCurrent = false;
         int itemPosition = 0;
         for (BookingPriority priority : priorityList) {
-            TimelineMainItemViewModel itemViewModel = new TimelineMainItemViewModel(timelineView);
+            TimelineMainItemViewModel itemViewModel = new TimelineMainItemViewModel(timelineView, itemPosition);
 
             SDBookingData bookingData = bookingHashMap.get(priority.krn);
 

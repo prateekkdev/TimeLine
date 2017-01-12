@@ -93,7 +93,7 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
     @Override
     public void onResume() {
         super.onResume();
-        // doInitialTransitionOfFullLength();
+        doInitialTransitionOfFullLength();
     }
 
     /*

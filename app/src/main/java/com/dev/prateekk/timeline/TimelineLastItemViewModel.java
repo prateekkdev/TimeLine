@@ -1,6 +1,5 @@
 package com.dev.prateekk.timeline;
 
-import android.databinding.BaseObservable;
 import android.view.View;
 import android.widget.Toast;
 
@@ -8,7 +7,11 @@ import android.widget.Toast;
  * Created by prateek.kesarwani on 05/01/17.
  */
 
-public class TimelineLastItemViewModel extends BaseObservable {
+public class TimelineLastItemViewModel extends TimelineItemViewModel {
+
+    public TimelineLastItemViewModel(TimelineContract.View timelineView, int itemPostion) {
+        super(timelineView, itemPostion);
+    }
 
     public boolean getEnabled() {
 

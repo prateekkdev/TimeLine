@@ -1,6 +1,5 @@
 package com.dev.prateekk.timeline;
 
-import android.databinding.BaseObservable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.Toast;
@@ -9,10 +8,7 @@ import android.widget.Toast;
  * Created by prateek.kesarwani on 15/12/16.
  */
 
-public class TimelineMainItemViewModel extends BaseObservable implements TimelineContract.ViewModel {
-
-    private int itemPosition;
-    private TimelineContract.View timelineView;
+public class TimelineMainItemViewModel extends TimelineItemViewModel {
 
     private String topTitle;
     private int topColor;
@@ -28,16 +24,8 @@ public class TimelineMainItemViewModel extends BaseObservable implements Timelin
     private Drawable midImgDrawable;
     private boolean isSelected;
 
-    public TimelineMainItemViewModel(TimelineContract.View view) {
-        this.timelineView = view;
-    }
-
-    public int getItemPosition() {
-        return itemPosition;
-    }
-
-    public void setItemPosition(int itemPosition) {
-        this.itemPosition = itemPosition;
+    public TimelineMainItemViewModel(TimelineContract.View timelineView, int itemPostion) {
+        super(timelineView, itemPostion);
     }
 
     public boolean isSelected() {
@@ -88,10 +76,6 @@ public class TimelineMainItemViewModel extends BaseObservable implements Timelin
         this.midTitle = midTitle;
     }
 
-    public void onClickInfo(View view) {
-        Toast.makeText(view.getContext(), "View Clicked", Toast.LENGTH_SHORT).show();
-    }
-
     public int getTopColor() {
         return topColor;
     }
@@ -114,11 +98,6 @@ public class TimelineMainItemViewModel extends BaseObservable implements Timelin
         if (isSelected()) {
             timelineView.onShowDropDown(bookingId);
         }
-    }
-
-    public void onItemClick(View view, int itemPosition) {
-        // Toast.makeText(TimelineApp.getApp(), "Scrolled - Id: " + bookingId, Toast.LENGTH_LONG).show();
-        timelineView.onItemClick(itemPosition);
     }
 
     /*
