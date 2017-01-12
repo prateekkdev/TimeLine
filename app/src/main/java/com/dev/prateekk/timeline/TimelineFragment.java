@@ -64,7 +64,7 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
         // TODO Could stuff like this be done using RxJava
         timelineBinding.timelineRecyclerView.setRecyclerViewInterface(new TimelineRecyclerViewInterface() {
             @Override
-            public void onScrolled() {
+            public void onScrolled(int index) {
 
                 // TODO Think of a better way
                 // If drop down open, need to close

@@ -60,10 +60,6 @@ public class TimelineRecyclerView extends RecyclerView {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 totalPixelMovement += dx;
-
-                if (recyclerViewInterface != null) {
-                    recyclerViewInterface.onScrolled();
-                }
             }
         });
 
@@ -107,6 +103,11 @@ public class TimelineRecyclerView extends RecyclerView {
         if (pixelToMoveBack != 0) {
             recyclerView.smoothScrollBy((int) pixelToMoveBack, 0);
         }
+
+        if (recyclerViewInterface != null) {
+            recyclerViewInterface.onScrolled(expectedPosition);
+        }
+
     }
 
     @Override
