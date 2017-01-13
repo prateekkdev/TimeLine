@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.dev.prateekk.timeline.R;
 import com.dev.prateekk.timeline.TimelineFragment;
+import com.dev.prateekk.timeline.TimelineTest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,14 +32,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        addBookingData();
-
-        addBookingDataDelayed(5);
-
         timelineFragment = (TimelineFragment) getSupportFragmentManager().findFragmentById(R.id.timeline_container);
 
-        timelineFragment.updateData(bookingHashMap, bookingPriorityArrayList);
+        TimelineTest.execute(timelineFragment);
 
+        // addBookingData();
+
+        // addBookingDataDelayed(5);
+
+        // timelineFragment.updateData(bookingHashMap, bookingPriorityArrayList);
     }
 
     @Override

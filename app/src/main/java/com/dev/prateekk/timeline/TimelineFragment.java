@@ -118,11 +118,19 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
 
     private void doInitialTransitionOfFullLength() {
 
+        // TODO This shouldn't be so much coupled with adapter
+        // TODO Ideally ViewModel should be outside of view and should have no view idea
+        // This fragment along with viewmodel should be reference from main activity and now view model has all the control,
+        // Once MainActivity binds it to fragment.
+
+        // Sorta hack here
+        final int size = timelineBinding.timelineRecyclerView.getAdapter().getItemCount();
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                timelineBinding.timelineRecyclerView.scrollListToPosition(4);
+                timelineBinding.timelineRecyclerView.scrollListToPosition(size);
             }
         }, 1000);
 
@@ -148,6 +156,6 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
 
     @Override
     public void onItemSelected(int itemPostion) {
-        scrollToCurrentIndex();
+        timelineBinding.timelineRecyclerView.scrollListToPosition(itemPostion);
     }
 }
