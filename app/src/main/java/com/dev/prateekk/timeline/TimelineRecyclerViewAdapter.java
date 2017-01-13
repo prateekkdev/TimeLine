@@ -240,6 +240,30 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
         notifyItemChanged(position);
     }
 
+
+    /**
+     * @return true : BookingData is current and in accordance with priority
+     */
+    private boolean checkIsItemCurrent(SDBookingData bookingData, BookingPriority bookingPriority) {
+
+        if (!bookingData.isBookingCurrent()) {
+            return false;
+        }
+
+        // If payment and drop, then current
+        if (bookingData.getStatus().equalsIgnoreCase("payment") && bookingPriority.type.equalsIgnoreCase("drop")) {
+            return true;
+        }
+
+        // If below payment and accept, then current.
+        if ((bookingData.getStatus().equalsIgnoreCase("accepted") || bookingData.getStatus().equalsIgnoreCase("reached") || bookingData.getStatus().equalsIgnoreCase("invoice"))
+                && bookingPriority.type.equalsIgnoreCase("pickup")) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * This should be Idempotent
      */
@@ -263,7 +287,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
 
             itemViewModel.setMidTitle(bookingData.getBookingResponse().getCustomer_info().name);
 
-            if (isCurrent) {
+            if (checkIsItemCurrent(bookingData, priority)) {
 
                 reachedCurrent = true;
 
