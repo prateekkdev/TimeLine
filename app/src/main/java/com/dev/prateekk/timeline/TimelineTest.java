@@ -95,14 +95,14 @@ public class TimelineTest {
 
         SDBookingData bookingData2 = new SDBookingData();
         bookingData2.getBookingResponse().setKrn("222");
-        bookingData2.setBookingCurrent(true);
-        bookingData2.mBookingResponse.setStatus("accepted");
+        bookingData2.setBookingCurrent(false);
+        bookingData2.mBookingResponse.setStatus("completed");
         bookingData2.mBookingResponse.customer_info.name = "Prateek2";
         bookingData2.mBookingResponse.customer_info.phone_no = "2222222222";
 
         SDBookingData bookingData3 = new SDBookingData();
         bookingData3.getBookingResponse().setKrn("333");
-        bookingData3.setBookingCurrent(false);
+        bookingData3.setBookingCurrent(true);
         bookingData3.mBookingResponse.setStatus("accepted");
         bookingData3.mBookingResponse.customer_info.name = "Prateek3";
         bookingData3.mBookingResponse.customer_info.phone_no = "3333333333";

@@ -48,16 +48,28 @@
                 android:orientation="horizontal"
                 android:visibility="@{timelineViewModel.showEndTrip ? View.GONE : View.VISIBLE}">
 
-                <TextView
-                    android:id="@+id/txt_item_mobile"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/line_divider"
                     android:gravity="center"
-                    android:text="@{timelineViewModel.mobileNo}"
-                    android:textColor="@color/font"
-                    android:visibility="@{timelineViewModel.showMobile ? View.VISIBLE : View.GONE}" />
+                    android:orientation="horizontal"
+                    android:visibility="@{timelineViewModel.showMobile ? View.VISIBLE : View.GONE}">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_phone" />
+
+                    <TextView
+                        android:id="@+id/txt_item_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{timelineViewModel.mobileNo}"
+                        android:textColor="@color/font" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@id/line_divider"
