@@ -88,6 +88,9 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
         // timelineBinding.timelineRecyclerView.getAdapter().notifyDataSetChanged();
         // timelineBinding.timelineRecyclerView.invalidate();
         // mAdapter.notifyDataSetChanged();
+
+        // TODO Immediately Scroll Move to current Index
+        scrollToCurrentIndex();
     }
 
     @Override

@@ -95,7 +95,7 @@ public class TimelineRecyclerView extends RecyclerView {
      * @param expectedPosition
      */
     public void scrollListToPosition(int expectedPosition) {
-
+        
         float targetScrollPos = expectedPosition * itemWidth + extraItemWidth - padding;
 
         float pixelToMoveBack = targetScrollPos - totalPixelMovement;
