@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.dev.prateekk.timeline.R;
 import com.dev.prateekk.timeline.TimelineFragment;
-import com.dev.prateekk.timeline.redundent.BookingPriority;
-import com.dev.prateekk.timeline.redundent.SDBookingData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,14 +61,14 @@ public class MainActivity extends AppCompatActivity {
 
         SDBookingData bookingData1 = new SDBookingData();
         bookingData1.getBookingResponse().setKrn("111");
-        bookingData1.setBookingCurrent(true);
-        bookingData1.mBookingResponse.setStatus("accepted");
+        bookingData1.setBookingCurrent(false);
+        bookingData1.mBookingResponse.setStatus("completed");
         bookingData1.mBookingResponse.customer_info.name = "Prateek1";
         bookingData1.mBookingResponse.customer_info.phone_no = "7022359793";
 
         SDBookingData bookingData2 = new SDBookingData();
         bookingData2.getBookingResponse().setKrn("222");
-        bookingData2.setBookingCurrent(false);
+        bookingData2.setBookingCurrent(true);
         bookingData2.mBookingResponse.setStatus("accepted");
         bookingData2.mBookingResponse.customer_info.name = "Prateek2";
         bookingData2.mBookingResponse.customer_info.phone_no = "0987890";
@@ -79,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
         bookingHashMap.put("222", bookingData2);
 
         bookingPriorityArrayList.add(new BookingPriority("111", "pickup"));
-        bookingPriorityArrayList.add(new BookingPriority("222", "pickup"));
         bookingPriorityArrayList.add(new BookingPriority("111", "drop"));
+        bookingPriorityArrayList.add(new BookingPriority("222", "pickup"));
         bookingPriorityArrayList.add(new BookingPriority("222", "drop"));
     }
 

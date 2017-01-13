@@ -128,6 +128,13 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
         return timelineMainItemViewModelList.size() + 2;
     }
 
+    /**
+     * Won't be required considering completed state.
+     *
+     * @param krn
+     * @param timelineMainItemViewModelList
+     * @return
+     */
     private boolean isItemAlreadyAdded(String krn, ArrayList<TimelineMainItemViewModel> timelineMainItemViewModelList) {
 
         for (TimelineMainItemViewModel item : timelineMainItemViewModelList) {
@@ -275,10 +282,17 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
 
             if (!reachedCurrent) {
 
+                // If booking is completed, then ignore pickup and only consider drop for adding item. No need for two items then.
+                if (bookingData.getStatus().equalsIgnoreCase("completed") && priority.type.equalsIgnoreCase("pickup")) {
+                    continue;
+                }
+
+                /*
                 // If this krn is already there before current action, means this is completed, so shouldn't be repeated as would not give any extra info.
                 if (isItemAlreadyAdded(bookingData.getKrn(), timelineMainItemViewModelList)) {
                     continue;
                 }
+                */
 
                 // TODO Not using this, as one time we have to add item
                 // If this is completed, means this item is already there in list so shouldn't be repeated as would not give any extra info.
