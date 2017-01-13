@@ -112,20 +112,24 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
     }
     */
 
+    public void scrollToCurrentIndex() {
+        timelineBinding.timelineRecyclerView.scrollListToPosition(timelineBinding.timelineRecyclerView.getAdapter().getCurrentIndex());
+    }
+
     private void doInitialTransitionOfFullLength() {
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                timelineBinding.timelineRecyclerView.scrollListToPosition(timelineBinding.timelineRecyclerView, 4);
+                timelineBinding.timelineRecyclerView.scrollListToPosition(4);
             }
         }, 1000);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                timelineBinding.timelineRecyclerView.scrollListToPosition(timelineBinding.timelineRecyclerView, timelineBinding.timelineRecyclerView.getAdapter().getCurrentIndex());
+                timelineBinding.timelineRecyclerView.scrollListToPosition(timelineBinding.timelineRecyclerView.getAdapter().getCurrentIndex());
             }
         }, 2000);
     }
@@ -144,6 +148,6 @@ public class TimelineFragment extends Fragment implements TimelineContract.View 
 
     @Override
     public void onItemSelected(int itemPostion) {
-        timelineBinding.timelineRecyclerView.scrollListToPosition(timelineBinding.timelineRecyclerView, itemPostion);
+        scrollToCurrentIndex();
     }
 }

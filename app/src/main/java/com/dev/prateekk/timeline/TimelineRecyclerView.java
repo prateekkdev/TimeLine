@@ -83,7 +83,7 @@ public class TimelineRecyclerView extends RecyclerView {
             expectedPosition = 0;
         }
 
-        scrollListToPosition(recyclerView, expectedPosition);
+        scrollListToPosition(expectedPosition);
     }
 
 
@@ -92,16 +92,15 @@ public class TimelineRecyclerView extends RecyclerView {
      * Size of recyclerView is the last element
      * Suppose size=4, ie 0, 1, 2, 3, 4. Here 0 is first bookign item and 4 is 'No more Bookings'
      *
-     * @param recyclerView
      * @param expectedPosition
      */
-    public void scrollListToPosition(RecyclerView recyclerView, int expectedPosition) {
+    public void scrollListToPosition(int expectedPosition) {
 
         float targetScrollPos = expectedPosition * itemWidth + extraItemWidth - padding;
 
         float pixelToMoveBack = targetScrollPos - totalPixelMovement;
         if (pixelToMoveBack != 0) {
-            recyclerView.smoothScrollBy((int) pixelToMoveBack, 0);
+            this.smoothScrollBy((int) pixelToMoveBack, 0);
         }
 
         if (recyclerViewInterface != null) {

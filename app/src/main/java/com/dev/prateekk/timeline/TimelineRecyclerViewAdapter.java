@@ -340,6 +340,10 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
             itemViewModel.setItemPosition(itemPosition++);
             timelineMainItemViewModelList.add(itemViewModel);
         }
+
+        // Immediately update as data changes
+        // TODO Should optimize?
+        this.notifyDataSetChanged();
     }
 
     public int getCurrentIndex() {

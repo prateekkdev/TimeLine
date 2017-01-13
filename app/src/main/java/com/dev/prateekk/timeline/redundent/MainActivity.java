@@ -31,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        addBooking();
-        // addBookingDataDelayed(10);
+        addBookingData();
+
+        addBookingDataDelayed(5);
 
         timelineFragment = (TimelineFragment) getSupportFragmentManager().findFragmentById(R.id.timeline_container);
 
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addBookingData() {
+
+        bookingHashMap.clear();
+        bookingPriorityArrayList.clear();
 
         SDBookingData bookingData1 = new SDBookingData();
         bookingData1.getBookingResponse().setKrn("111");
@@ -93,12 +97,17 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 addBooking();
                 timelineFragment.updateData(bookingHashMap, bookingPriorityArrayList);
+
+                timelineFragment.scrollToCurrentIndex();
             }
         }, sec * 1000);
-
     }
 
     private void addBooking() {
+        // First remove previous data
+        bookingHashMap.clear();
+        bookingPriorityArrayList.clear();
+
         SDBookingData bookingData1 = new SDBookingData();
         bookingData1.getBookingResponse().setKrn("111");
         bookingData1.setBookingCurrent(false);
