@@ -58,6 +58,12 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
         textView.setText(pname);
     }
 
+    /**
+     * This function should be Idempotent
+     *
+     * @param bookingHashMap
+     * @param bookingPriorityArrayList
+     */
     public void updateData(HashMap<String, SDBookingData> bookingHashMap, ArrayList<BookingPriority> bookingPriorityArrayList) {
         this.bookingHashMap = bookingHashMap;
         this.priorityList = bookingPriorityArrayList;
@@ -227,6 +233,9 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
         notifyItemChanged(position);
     }
 
+    /**
+     * This should be Idempotent
+     */
     public void updateList() {
 
         // TODO Clear list before updating.
